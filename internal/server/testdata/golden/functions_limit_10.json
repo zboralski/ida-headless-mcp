@@ -1,0 +1,49 @@
+{
+  "count": 10,
+  "functions": [
+    {
+      "address": 4294969088,
+      "name": "sub_100000700"
+    },
+    {
+      "address": 4294969100,
+      "name": "sub_10000070C"
+    },
+    {
+      "address": 4294969116,
+      "name": "sub_10000071C"
+    },
+    {
+      "address": 4294969216,
+      "name": "sub_100000780"
+    },
+    {
+      "address": 4294969232,
+      "name": "sub_100000790"
+    },
+    {
+      "address": 4294969332,
+      "name": "sub_1000007F4"
+    },
+    {
+      "address": 4294969348,
+      "name": "sub_100000804"
+    },
+    {
+      "address": 4294969448,
+      "name": "sub_100000868"
+    },
+    {
+      "address": 4294969464,
+      "name": "sub_100000878"
+    },
+    {
+      "address": 4294969564,
+      "name": "sub_1000008DC"
+    }
+  ],
+  "limit": 10,
+  "offset": 0,
+  "regex": "",
+  "total": 133
+}

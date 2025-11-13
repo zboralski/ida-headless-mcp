@@ -1,0 +1,12 @@
+{
+  "address": 4294969696,
+  "has_type": false,
+  "is_array": false,
+  "is_enum": false,
+  "is_func": false,
+  "is_ptr": false,
+  "is_struct": false,
+  "is_union": false,
+  "size": 0,
+  "type": ""
+}

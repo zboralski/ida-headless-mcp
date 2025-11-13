@@ -1,0 +1,44 @@
+# Build artifacts
+.gocache/
+bin/
+
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# Session state
+databases/sessions/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDA database files (keep sample .i64 for tests)
+*.i64
+*.idb
+*.id0
+*.id1
+*.id2
+*.nam
+*.til
+!samples/*.i64
+
+# IDA temporary files
+.$$$
+*.$$$

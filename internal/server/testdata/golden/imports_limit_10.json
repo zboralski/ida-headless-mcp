@@ -1,0 +1,70 @@
+{
+  "count": 10,
+  "imports": [
+    {
+      "address": 4295017008,
+      "module": "/usr/lib/libutil.dylib",
+      "name": "_humanize_number",
+      "ordinal": 0
+    },
+    {
+      "address": 4295017016,
+      "module": "/usr/lib/libncurses.5.4.dylib",
+      "name": "_tgetent",
+      "ordinal": 0
+    },
+    {
+      "address": 4295017024,
+      "module": "/usr/lib/libncurses.5.4.dylib",
+      "name": "_tgetstr",
+      "ordinal": 0
+    },
+    {
+      "address": 4295017032,
+      "module": "/usr/lib/libncurses.5.4.dylib",
+      "name": "_tgoto",
+      "ordinal": 0
+    },
+    {
+      "address": 4295017040,
+      "module": "/usr/lib/libncurses.5.4.dylib",
+      "name": "_tputs",
+      "ordinal": 0
+    },
+    {
+      "address": 4295017048,
+      "module": "/usr/lib/libSystem.B.dylib",
+      "name": "___assert_rtn",
+      "ordinal": 0
+    },
+    {
+      "address": 4295017056,
+      "module": "/usr/lib/libSystem.B.dylib",
+      "name": "___error",
+      "ordinal": 0
+    },
+    {
+      "address": 4295017064,
+      "module": "/usr/lib/libSystem.B.dylib",
+      "name": "___maskrune",
+      "ordinal": 0
+    },
+    {
+      "address": 4295017072,
+      "module": "/usr/lib/libSystem.B.dylib",
+      "name": "___stack_chk_fail",
+      "ordinal": 0
+    },
+    {
+      "address": 4295017080,
+      "module": "/usr/lib/libSystem.B.dylib",
+      "name": "___tolower",
+      "ordinal": 0
+    }
+  ],
+  "limit": 10,
+  "module": "",
+  "offset": 0,
+  "regex": "",
+  "total": 90
+}

@@ -1,0 +1,109 @@
+{
+  "count": 13,
+  "segments": [
+    {
+      "bitness": 2,
+      "class": "DATA",
+      "end": 4294969088,
+      "name": "HEADER",
+      "permissions": 5,
+      "start": 4294967296
+    },
+    {
+      "bitness": 2,
+      "class": "CODE",
+      "end": 4294984364,
+      "name": "__text",
+      "permissions": 5,
+      "start": 4294969088
+    },
+    {
+      "bitness": 2,
+      "class": "CODE",
+      "end": 4294985712,
+      "name": "__auth_stubs",
+      "permissions": 5,
+      "start": 4294984364
+    },
+    {
+      "bitness": 2,
+      "class": "DATA",
+      "end": 4294985973,
+      "name": "__const",
+      "permissions": 5,
+      "start": 4294985712
+    },
+    {
+      "bitness": 2,
+      "class": "DATA",
+      "end": 4294987256,
+      "name": "__cstring",
+      "permissions": 5,
+      "start": 4294985973
+    },
+    {
+      "bitness": 2,
+      "class": "",
+      "end": 4295000064,
+      "name": "__unwind_info",
+      "permissions": 5,
+      "start": 4294987256
+    },
+    {
+      "bitness": 2,
+      "class": "DATA",
+      "end": 4295000736,
+      "name": "__auth_got",
+      "permissions": 4,
+      "start": 4295000064
+    },
+    {
+      "bitness": 2,
+      "class": "DATA",
+      "end": 4295000784,
+      "name": "__got",
+      "permissions": 4,
+      "start": 4295000736
+    },
+    {
+      "bitness": 2,
+      "class": "DATA",
+      "end": 4295016448,
+      "name": "__const",
+      "permissions": 4,
+      "start": 4295000784
+    },
+    {
+      "bitness": 2,
+      "class": "DATA",
+      "end": 4295016480,
+      "name": "__data",
+      "permissions": 6,
+      "start": 4295016448
+    },
+    {
+      "bitness": 2,
+      "class": "BSS",
+      "end": 4295016656,
+      "name": "__common",
+      "permissions": 6,
+      "start": 4295016480
+    },
+    {
+      "bitness": 2,
+      "class": "BSS",
+      "end": 4295017000,
+      "name": "__bss",
+      "permissions": 6,
+      "start": 4295016656
+    },
+    {
+      "bitness": 2,
+      "class": "XTRN",
+      "end": 4295017728,
+      "name": "UNDEF",
+      "permissions": 0,
+      "start": 4295017008
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "count": 10,
+  "limit": 10,
+  "offset": 0,
+  "regex": "",
+  "strings": [
+    {
+      "address": 4294967336,
+      "value": "__PAGEZERO"
+    },
+    {
+      "address": 4294967408,
+      "value": "__TEXT"
+    },
+    {
+      "address": 4294967472,
+      "value": "__text"
+    },
+    {
+      "address": 4294967488,
+      "value": "__TEXT"
+    },
+    {
+      "address": 4294967552,
+      "value": "__auth_stubs"
+    },
+    {
+      "address": 4294967568,
+      "value": "__TEXT"
+    },
+    {
+      "address": 4294967632,
+      "value": "__const"
+    },
+    {
+      "address": 4294967648,
+      "value": "__TEXT"
+    },
+    {
+      "address": 4294967712,
+      "value": "__cstring"
+    },
+    {
+      "address": 4294967728,
+      "value": "__TEXT"
+    }
+  ],
+  "total": 117
+}

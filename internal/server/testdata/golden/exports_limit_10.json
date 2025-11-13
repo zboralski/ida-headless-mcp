@@ -1,0 +1,21 @@
+{
+  "count": 2,
+  "exports": [
+    {
+      "address": 4294967296,
+      "index": 0,
+      "name": "__mh_execute_header",
+      "ordinal": 4294967296
+    },
+    {
+      "address": 4294969696,
+      "index": 1,
+      "name": "start",
+      "ordinal": 4294969696
+    }
+  ],
+  "limit": 10,
+  "offset": 0,
+  "regex": "",
+  "total": 2
+}

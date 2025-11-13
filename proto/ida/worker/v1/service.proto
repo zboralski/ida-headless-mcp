@@ -1,0 +1,845 @@
+syntax = "proto3";
+
+package ida.worker.v1;
+
+option go_package = "github.com/zboralski/ida-headless-mcp/ida/worker/v1;worker";
+
+// SessionControl manages IDA database lifecycle
+service SessionControl {
+  // OpenBinary opens a binary file for analysis
+  rpc OpenBinary(OpenBinaryRequest) returns (OpenBinaryResponse);
+
+  // CloseSession closes the database and terminates analysis
+  rpc CloseSession(CloseSessionRequest) returns (CloseSessionResponse);
+
+  // SaveDatabase saves the current database state
+  rpc SaveDatabase(SaveDatabaseRequest) returns (SaveDatabaseResponse);
+
+  // PlanAndWait forces IDA auto-analysis to complete outstanding work
+  rpc PlanAndWait(PlanAndWaitRequest) returns (PlanAndWaitResponse);
+
+  // GetSessionInfo returns current session metadata
+  rpc GetSessionInfo(GetSessionInfoRequest) returns (GetSessionInfoResponse);
+}
+
+// AnalysisTools provides IDA Pro analysis operations
+service AnalysisTools {
+  // GetBytes reads raw bytes from address
+  rpc GetBytes(GetBytesRequest) returns (GetBytesResponse);
+
+  // GetDisasm returns disassembly at address
+  rpc GetDisasm(GetDisasmRequest) returns (GetDisasmResponse);
+
+  // GetFunctionDisasm returns full disassembly for a function
+  rpc GetFunctionDisasm(GetFunctionDisasmRequest) returns (GetFunctionDisasmResponse);
+
+  // GetDecompiled returns decompiled pseudocode
+  rpc GetDecompiled(GetDecompiledRequest) returns (GetDecompiledResponse);
+
+  // GetFunctionName returns function name at address
+  rpc GetFunctionName(GetFunctionNameRequest) returns (GetFunctionNameResponse);
+
+  // GetSegments returns all memory segments
+  rpc GetSegments(GetSegmentsRequest) returns (GetSegmentsResponse);
+
+  // GetFunctions returns all functions
+  rpc GetFunctions(GetFunctionsRequest) returns (GetFunctionsResponse);
+
+  // GetXRefsTo returns cross-references to address
+  rpc GetXRefsTo(GetXRefsToRequest) returns (GetXRefsToResponse);
+
+  // GetXRefsFrom returns outgoing references from address
+  rpc GetXRefsFrom(GetXRefsFromRequest) returns (GetXRefsFromResponse);
+
+  // GetDataRefs returns data references to address
+  rpc GetDataRefs(GetDataRefsRequest) returns (GetDataRefsResponse);
+
+  // GetStringXRefs returns string references for address
+  rpc GetStringXRefs(GetStringXRefsRequest) returns (GetStringXRefsResponse);
+
+  // GetImports returns import table
+  rpc GetImports(GetImportsRequest) returns (GetImportsResponse);
+
+  // GetExports returns export table
+  rpc GetExports(GetExportsRequest) returns (GetExportsResponse);
+
+  // GetEntryPoint returns binary entry point
+  rpc GetEntryPoint(GetEntryPointRequest) returns (GetEntryPointResponse);
+
+  // GetStrings returns all strings in binary
+  rpc GetStrings(GetStringsRequest) returns (GetStringsResponse);
+
+  // MakeFunction creates function at address
+  rpc MakeFunction(MakeFunctionRequest) returns (MakeFunctionResponse);
+
+  // ImportIl2Cpp ingests Il2CppDumper metadata into the current database
+  rpc ImportIl2Cpp(ImportIl2CppRequest) returns (ImportIl2CppResponse);
+
+  // GetGlobals enumerates global variables
+  rpc GetGlobals(GetGlobalsRequest) returns (GetGlobalsResponse);
+
+  // SetGlobalType sets the type of a global variable
+  rpc SetGlobalType(SetGlobalTypeRequest) returns (SetGlobalTypeResponse);
+
+  // RenameGlobal renames a global variable
+  rpc RenameGlobal(RenameGlobalRequest) returns (RenameGlobalResponse);
+
+  // DataReadString reads an ASCII/UTF-8 string from memory
+  rpc DataReadString(DataReadStringRequest) returns (DataReadStringResponse);
+
+  // DataReadByte reads a single byte from memory
+  rpc DataReadByte(DataReadByteRequest) returns (DataReadByteResponse);
+
+  // FindBinary searches for byte patterns
+  rpc FindBinary(FindBinaryRequest) returns (FindBinaryResponse);
+
+  // FindText searches for ASCII/UTF-8 strings
+  rpc FindText(FindTextRequest) returns (FindTextResponse);
+
+  // ListStructs enumerates structure definitions
+  rpc ListStructs(ListStructsRequest) returns (ListStructsResponse);
+
+  // GetStruct returns metadata for a specific structure
+  rpc GetStruct(GetStructRequest) returns (GetStructResponse);
+
+  // ListEnums enumerates all enumerations with optional filtering
+  rpc ListEnums(ListEnumsRequest) returns (ListEnumsResponse);
+
+  // GetEnum returns metadata for a specific enumeration
+  rpc GetEnum(GetEnumRequest) returns (GetEnumResponse);
+
+  // GetFunctionInfo returns comprehensive function metadata
+  rpc GetFunctionInfo(GetFunctionInfoRequest) returns (GetFunctionInfoResponse);
+
+  // GetTypeAt returns type information at address
+  rpc GetTypeAt(GetTypeAtRequest) returns (GetTypeAtResponse);
+
+  // GetDwordAt reads 32-bit value
+  rpc GetDwordAt(GetDwordAtRequest) returns (GetDwordAtResponse);
+
+  // GetQwordAt reads 64-bit value
+  rpc GetQwordAt(GetQwordAtRequest) returns (GetQwordAtResponse);
+
+  // GetInstructionLength returns instruction size
+  rpc GetInstructionLength(GetInstructionLengthRequest) returns (GetInstructionLengthResponse);
+
+  // SetComment sets comment at address
+  rpc SetComment(SetCommentRequest) returns (SetCommentResponse);
+
+  // GetComment returns comment at address
+  rpc GetComment(GetCommentRequest) returns (GetCommentResponse);
+
+  // SetFuncComment sets function comment
+  rpc SetFuncComment(SetFuncCommentRequest) returns (SetFuncCommentResponse);
+
+  // GetFuncComment returns function comment
+  rpc GetFuncComment(GetFuncCommentRequest) returns (GetFuncCommentResponse);
+
+  // SetLvarType sets Hex-Rays local variable type
+  rpc SetLvarType(SetLvarTypeRequest) returns (SetLvarTypeResponse);
+
+  // RenameLvar renames a Hex-Rays local variable
+  rpc RenameLvar(RenameLvarRequest) returns (RenameLvarResponse);
+
+  // SetDecompilerComment sets a Hex-Rays pseudocode comment
+  rpc SetDecompilerComment(SetDecompilerCommentRequest) returns (SetDecompilerCommentResponse);
+
+  // SetName sets name at address
+  rpc SetName(SetNameRequest) returns (SetNameResponse);
+
+  // GetName returns name at address
+  rpc GetName(GetNameRequest) returns (GetNameResponse);
+
+  // DeleteName removes name at address
+  rpc DeleteName(DeleteNameRequest) returns (DeleteNameResponse);
+
+  // SetFunctionType applies a C-style prototype to a function
+  rpc SetFunctionType(SetFunctionTypeRequest) returns (SetFunctionTypeResponse);
+}
+
+// Healthcheck provides worker health monitoring
+service Healthcheck {
+  // Ping simple liveness check
+  rpc Ping(PingRequest) returns (PingResponse);
+
+  // StatusStream streams worker metrics
+  rpc StatusStream(StatusStreamRequest) returns (stream WorkerStatus);
+}
+
+// OpenBinaryRequest contains binary path
+message OpenBinaryRequest {
+  string binary_path = 1;
+  bool auto_analyze = 2;  // Run auto-analysis
+}
+
+// OpenBinaryResponse returns session metadata
+message OpenBinaryResponse {
+  bool success = 1;
+  string error = 2;
+  bool has_decompiler = 3;
+  string binary_path = 4;
+}
+
+// CloseSessionRequest triggers database close
+message CloseSessionRequest {
+  bool save = 1;  // Save before closing
+}
+
+// CloseSessionResponse confirms closure
+message CloseSessionResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+// SaveDatabaseRequest triggers save
+message SaveDatabaseRequest {}
+
+// SaveDatabaseResponse returns save status
+message SaveDatabaseResponse {
+  bool success = 1;
+  string error = 2;
+  int64 timestamp = 3;
+  bool dirty = 4;  // Had unsaved changes
+}
+
+// PlanAndWaitRequest triggers full auto-analysis
+message PlanAndWaitRequest {}
+
+// PlanAndWaitResponse returns auto-analysis status
+message PlanAndWaitResponse {
+  bool success = 1;
+  string error = 2;
+  double duration_seconds = 3;
+}
+
+// GetSessionInfoRequest queries session state
+message GetSessionInfoRequest {}
+
+// GetSessionInfoResponse returns session metadata
+message GetSessionInfoResponse {
+  string binary_path = 1;
+  int64 opened_at = 2;
+  int64 last_activity = 3;
+  bool has_decompiler = 4;
+  bool auto_running = 5;
+  string auto_state = 6;
+}
+
+// GetBytesRequest specifies address and size
+message GetBytesRequest {
+  uint64 address = 1;
+  uint32 size = 2;
+}
+
+// GetBytesResponse returns raw bytes
+message GetBytesResponse {
+  bytes data = 1;
+  string error = 2;
+}
+
+// GetDisasmRequest specifies address
+message GetDisasmRequest {
+  uint64 address = 1;
+}
+
+// GetDisasmResponse returns disassembly line
+message GetDisasmResponse {
+  string disasm = 1;
+  string error = 2;
+}
+
+message GetFunctionDisasmRequest {
+  uint64 address = 1;
+}
+
+message GetFunctionDisasmResponse {
+  string disassembly = 1;
+  string error = 2;
+}
+
+// GetDecompiledRequest specifies function address
+message GetDecompiledRequest {
+  uint64 address = 1;
+}
+
+// GetDecompiledResponse returns pseudocode
+message GetDecompiledResponse {
+  string code = 1;
+  string error = 2;
+}
+
+// GetFunctionNameRequest specifies address
+message GetFunctionNameRequest {
+  uint64 address = 1;
+}
+
+// GetFunctionNameResponse returns name
+message GetFunctionNameResponse {
+  string name = 1;
+  string error = 2;
+}
+
+// GetSegmentsRequest has no parameters
+message GetSegmentsRequest {}
+
+// Segment represents memory segment
+message Segment {
+  uint64 start = 1;
+  uint64 end = 2;
+  string name = 3;
+  string seg_class = 4;
+  uint32 permissions = 5;
+  uint32 bitness = 6;
+}
+
+// GetSegmentsResponse returns segments
+message GetSegmentsResponse {
+  repeated Segment segments = 1;
+  string error = 2;
+}
+
+// GetFunctionsRequest has no parameters
+message GetFunctionsRequest {}
+
+// Function represents a function
+message Function {
+  uint64 address = 1;
+  string name = 2;
+}
+
+// GetFunctionsResponse returns all functions
+message GetFunctionsResponse {
+  repeated Function functions = 1;
+  string error = 2;
+}
+
+// GetXRefsToRequest specifies target address
+message GetXRefsToRequest {
+  uint64 address = 1;
+}
+
+// XRef represents cross-reference
+message XRef {
+  uint64 from = 1;
+  uint32 type = 2;
+  uint64 to = 3;
+}
+
+// GetXRefsToResponse returns xrefs
+message GetXRefsToResponse {
+  repeated XRef xrefs = 1;
+  string error = 2;
+}
+
+// GetXRefsFromRequest specifies source address
+message GetXRefsFromRequest {
+  uint64 address = 1;
+}
+
+// GetXRefsFromResponse returns outgoing xrefs
+message GetXRefsFromResponse {
+  repeated XRef xrefs = 1;
+  string error = 2;
+}
+
+// GetDataRefsRequest specifies data address
+message GetDataRefsRequest {
+  uint64 address = 1;
+}
+
+// DataRef represents data reference
+message DataRef {
+  uint64 from = 1;
+  uint32 type = 2;
+}
+
+// GetDataRefsResponse returns data refs
+message GetDataRefsResponse {
+  repeated DataRef refs = 1;
+  string error = 2;
+}
+
+// GetStringXRefsRequest specifies string address
+message GetStringXRefsRequest {
+  uint64 address = 1;
+}
+
+// StringXRef represents a string reference with context
+message StringXRef {
+  uint64 address = 1;
+  uint64 function_address = 2;
+  string function_name = 3;
+}
+
+// GetStringXRefsResponse returns string xrefs
+message GetStringXRefsResponse {
+  repeated StringXRef refs = 1;
+  string error = 2;
+}
+
+// GetImportsRequest has no parameters
+message GetImportsRequest {}
+
+// Import represents imported function
+message Import {
+  string module = 1;
+  uint64 address = 2;
+  string name = 3;
+  uint64 ordinal = 4;
+}
+
+// GetImportsResponse returns imports
+message GetImportsResponse {
+  repeated Import imports = 1;
+  string error = 2;
+}
+
+// GetExportsRequest has no parameters
+message GetExportsRequest {}
+
+// Export represents exported function
+message Export {
+  uint64 index = 1;
+  uint64 ordinal = 2;
+  uint64 address = 3;
+  string name = 4;
+}
+
+// GetExportsResponse returns exports
+message GetExportsResponse {
+  repeated Export exports = 1;
+  string error = 2;
+}
+
+// GetEntryPointRequest has no parameters
+message GetEntryPointRequest {}
+
+// GetEntryPointResponse returns entry address
+message GetEntryPointResponse {
+  uint64 address = 1;
+  string error = 2;
+}
+
+// GetStringsRequest with pagination parameters
+message GetStringsRequest {
+  int32 offset = 1;  // Starting index (default: 0)
+  int32 limit = 2;   // Maximum results to return (default: 1000)
+}
+
+// StringItem represents string with address
+message StringItem {
+  uint64 address = 1;
+  string value = 2;
+}
+
+// GetStringsResponse returns paginated strings
+message GetStringsResponse {
+  repeated StringItem strings = 1;
+  string error = 2;
+  int32 total = 3;   // Total count of all strings
+  int32 offset = 4;  // Current offset
+  int32 count = 5;   // Number of strings returned
+}
+
+// MakeFunctionRequest specifies address
+message MakeFunctionRequest {
+  uint64 address = 1;
+}
+
+// MakeFunctionResponse confirms creation
+message MakeFunctionResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+// ImportIl2CppRequest provides Il2Cpp metadata on disk
+message ImportIl2CppRequest {
+  string script_path = 1;
+  string il2cpp_path = 2;
+  repeated string fields = 3;
+}
+
+// ImportIl2CppResponse describes applied metadata stats
+message ImportIl2CppResponse {
+  bool success = 1;
+  string error = 2;
+  double duration_seconds = 3;
+  uint32 functions_named = 4;
+  uint32 strings_named = 5;
+  uint32 metadata_named = 6;
+  uint32 metadata_methods = 7;
+  uint32 functions_defined = 8;
+  uint32 signatures_applied = 9;
+}
+
+// GetDwordAtRequest specifies address
+message GetDwordAtRequest {
+  uint64 address = 1;
+}
+
+// GetDwordAtResponse returns 32-bit value
+message GetDwordAtResponse {
+  uint32 value = 1;
+  string error = 2;
+}
+
+// GetQwordAtRequest specifies address
+message GetQwordAtRequest {
+  uint64 address = 1;
+}
+
+// GetQwordAtResponse returns 64-bit value
+message GetQwordAtResponse {
+  uint64 value = 1;
+  string error = 2;
+}
+
+// GetInstructionLengthRequest specifies address
+message GetInstructionLengthRequest {
+  uint64 address = 1;
+}
+
+// GetInstructionLengthResponse returns length
+message GetInstructionLengthResponse {
+  uint32 length = 1;
+  string error = 2;
+}
+
+// PingRequest for liveness check
+message PingRequest {}
+
+// PingResponse confirms alive
+message PingResponse {
+  bool alive = 1;
+}
+
+// StatusStreamRequest starts metrics stream
+message StatusStreamRequest {
+  uint32 interval_seconds = 1;  // Update interval
+}
+
+// WorkerStatus contains metrics
+message WorkerStatus {
+  int64 timestamp = 1;
+  uint64 memory_bytes = 2;
+  bool dirty = 3;  // Has unsaved changes
+  int64 last_activity = 4;
+  uint32 pending_requests = 5;
+}
+
+// SetCommentRequest sets comment at address
+message SetCommentRequest {
+  uint64 address = 1;
+  string comment = 2;
+  bool repeatable = 3;  // Repeatable comment (default: false)
+}
+
+// SetCommentResponse confirms comment set
+message SetCommentResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+// GetCommentRequest queries comment at address
+message GetCommentRequest {
+  uint64 address = 1;
+  bool repeatable = 2;  // Get repeatable comment (default: false)
+}
+
+// GetCommentResponse returns comment
+message GetCommentResponse {
+  string comment = 1;
+  string error = 2;
+}
+
+// SetFuncCommentRequest sets function comment
+message SetFuncCommentRequest {
+  uint64 address = 1;
+  string comment = 2;
+}
+
+// SetFuncCommentResponse confirms function comment set
+message SetFuncCommentResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message SetLvarTypeRequest {
+  uint64 function_address = 1;
+  string lvar_name = 2;
+  string lvar_type = 3;
+}
+
+message SetLvarTypeResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message RenameLvarRequest {
+  uint64 function_address = 1;
+  string lvar_name = 2;
+  string new_name = 3;
+}
+
+message RenameLvarResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message SetDecompilerCommentRequest {
+  uint64 function_address = 1;
+  uint64 address = 2;
+  string comment = 3;
+}
+
+message SetDecompilerCommentResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message GetGlobalsRequest {
+  string regex = 1;
+  bool case_sensitive = 2;
+}
+
+message GlobalVariable {
+  uint64 address = 1;
+  string name = 2;
+  string type = 3;
+}
+
+message GetGlobalsResponse {
+  repeated GlobalVariable globals = 1;
+  string error = 2;
+}
+
+message SetGlobalTypeRequest {
+  uint64 address = 1;
+  string type = 2;
+}
+
+message SetGlobalTypeResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message RenameGlobalRequest {
+  uint64 address = 1;
+  string new_name = 2;
+}
+
+message RenameGlobalResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message DataReadStringRequest {
+  uint64 address = 1;
+  uint32 max_length = 2;
+}
+
+message DataReadStringResponse {
+  string value = 1;
+  string error = 2;
+}
+
+message DataReadByteRequest {
+  uint64 address = 1;
+}
+
+message DataReadByteResponse {
+  uint32 value = 1;
+  string error = 2;
+}
+
+message ListStructsRequest {
+  string regex = 1;
+  bool case_sensitive = 2;
+}
+
+message StructSummary {
+  string name = 1;
+  uint64 id = 2;
+  uint32 size = 3;
+}
+
+message ListStructsResponse {
+  repeated StructSummary structs = 1;
+  string error = 2;
+}
+
+message GetStructRequest {
+  string name = 1;
+}
+
+message StructMember {
+  string name = 1;
+  uint32 offset = 2;
+  uint32 size = 3;
+  string type = 4;
+}
+
+message GetStructResponse {
+  string name = 1;
+  uint64 id = 2;
+  uint32 size = 3;
+  repeated StructMember members = 4;
+  string error = 5;
+}
+
+message ListEnumsRequest {
+  string regex = 1;
+  bool case_sensitive = 2;
+}
+
+message EnumSummary {
+  string name = 1;
+  uint64 id = 2;
+}
+
+message ListEnumsResponse {
+  repeated EnumSummary enums = 1;
+  string error = 2;
+}
+
+message GetEnumRequest {
+  string name = 1;
+}
+
+message EnumMember {
+  string name = 1;
+  uint64 value = 2;
+}
+
+message GetEnumResponse {
+  string name = 1;
+  uint64 id = 2;
+  repeated EnumMember members = 3;
+  string error = 4;
+}
+
+message GetFunctionInfoRequest {
+  uint64 address = 1;
+}
+
+message FunctionFlags {
+  bool is_library = 1;
+  bool is_thunk = 2;
+  bool no_return = 3;
+  bool has_farseg = 4;
+  bool is_static = 5;
+}
+
+message GetFunctionInfoResponse {
+  uint64 address = 1;
+  string name = 2;
+  uint64 start = 3;
+  uint64 end = 4;
+  uint32 size = 5;
+  uint32 frame_size = 6;
+  FunctionFlags flags = 7;
+  string calling_convention = 8;
+  string return_type = 9;
+  uint32 num_args = 10;
+  string error = 11;
+}
+
+message GetTypeAtRequest {
+  uint64 address = 1;
+}
+
+message GetTypeAtResponse {
+  uint64 address = 1;
+  string type = 2;
+  uint32 size = 3;
+  bool is_ptr = 4;
+  bool is_func = 5;
+  bool is_array = 6;
+  bool is_struct = 7;
+  bool is_union = 8;
+  bool is_enum = 9;
+  bool has_type = 10;
+  string error = 11;
+}
+
+message FindBinaryRequest {
+  uint64 start = 1;
+  uint64 end = 2;
+  string pattern = 3;
+  bool search_up = 4;
+}
+
+message FindBinaryResponse {
+  repeated uint64 addresses = 1;
+  string error = 2;
+}
+
+message FindTextRequest {
+  uint64 start = 1;
+  uint64 end = 2;
+  string needle = 3;
+  bool case_sensitive = 4;
+  bool unicode = 5;
+}
+
+message FindTextResponse {
+  repeated uint64 addresses = 1;
+  string error = 2;
+}
+
+// GetFuncCommentRequest queries function comment
+message GetFuncCommentRequest {
+  uint64 address = 1;
+}
+
+// GetFuncCommentResponse returns function comment
+message GetFuncCommentResponse {
+  string comment = 1;
+  string error = 2;
+}
+
+// SetNameRequest sets name at address
+message SetNameRequest {
+  uint64 address = 1;
+  string name = 2;
+}
+
+// SetNameResponse confirms name set
+message SetNameResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+// GetNameRequest queries name at address
+message GetNameRequest {
+  uint64 address = 1;
+}
+
+// GetNameResponse returns name
+message GetNameResponse {
+  string name = 1;
+  string error = 2;
+}
+
+// DeleteNameRequest removes name at address
+message DeleteNameRequest {
+  uint64 address = 1;
+}
+
+// DeleteNameResponse confirms name deletion
+message DeleteNameResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+// SetFunctionTypeRequest assigns a prototype to a function
+message SetFunctionTypeRequest {
+  uint64 address = 1;
+  string prototype = 2;
+}
+
+// SetFunctionTypeResponse returns status
+message SetFunctionTypeResponse {
+  bool success = 1;
+  string error = 2;
+}

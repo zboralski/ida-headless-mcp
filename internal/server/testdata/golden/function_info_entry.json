@@ -1,0 +1,18 @@
+{
+  "address": 4294969696,
+  "calling_convention": "",
+  "end": 4294972776,
+  "flags": {
+    "has_farseg": false,
+    "is_library": false,
+    "is_static": false,
+    "is_thunk": false,
+    "no_return": false
+  },
+  "frame_size": 1680,
+  "name": "start",
+  "num_args": 0,
+  "return_type": "",
+  "size": 3080,
+  "start": 4294969696
+}

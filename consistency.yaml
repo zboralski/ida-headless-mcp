@@ -1,0 +1,24 @@
+# Consistency rules enforce that related patterns across files stay in sync
+# Each rule links multiple file:regex patterns that must all match
+
+- name: session_timeout_matches
+  patterns:
+    - internal/server/server.go:/defaultSessionTimeoutMin = 240/
+    - internal/server/server.go:/\/\/ 4 hours - long enough for extended RE work/
+    - README.md:/Automatic session timeouts \(4 hours default, configurable\)/
+
+- name: default_port_matches
+  patterns:
+    - internal/server/server.go:/DefaultPort[[:space:]]*=[[:space:]]*17300/
+    - README.md:/http:\/\/localhost:17300/
+    - README.md:/running on port 17300/
+    - scripts/inspector.sh:/localhost:17300/
+
+- name: default_page_limit_matches
+  patterns:
+    - internal/server/server.go:/defaultPageLimit[[:space:]]*=[[:space:]]*1000/
+    - README.md:/limit.* \(default 1000\)/
+
+- name: max_page_limit_matches
+  patterns:
+    - internal/server/server.go:/maxPageLimit[[:space:]]*=[[:space:]]*10000/
