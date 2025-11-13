@@ -444,16 +444,21 @@ class IDAWrapper:
         for match in add_func_pattern.finditer(script_content):
             start_addr = int(match.group(1), 16)
             end_addr = int(match.group(2), 16)
+
+            # Skip if start == end (invalid Blutter output)
+            if start_addr == end_addr:
+                continue
+
             try:
                 # Check if function already exists
                 existing = self.ida_funcs.get_func(start_addr)
                 if existing:
                     self.ida_funcs.del_func(start_addr)
-                # Create function
+                # Create function with proper boundaries
                 if self.ida_funcs.add_func(start_addr, end_addr):
                     stats["functions_created"] += 1
             except Exception as exc:
-                logging.debug("Failed to create function at %x: %s", start_addr, exc)
+                logging.debug("Failed to create function at %x-%x: %s", start_addr, end_addr, exc)
 
         # Parse idaapi.set_name() calls
         # Pattern: idaapi.set_name(0x133830, "dart_core_::get__uriBaseClosure_133830")
