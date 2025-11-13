@@ -75,6 +75,9 @@ service AnalysisTools {
   // ImportIl2Cpp ingests Il2CppDumper metadata into the current database
   rpc ImportIl2Cpp(ImportIl2CppRequest) returns (ImportIl2CppResponse);
 
+  // ImportFlutter ingests Blutter output into the current database
+  rpc ImportFlutter(ImportFlutterRequest) returns (ImportFlutterResponse);
+
   // GetGlobals enumerates global variables
   rpc GetGlobals(GetGlobalsRequest) returns (GetGlobalsResponse);
 
@@ -470,6 +473,20 @@ message ImportIl2CppResponse {
   uint32 metadata_methods = 7;
   uint32 functions_defined = 8;
   uint32 signatures_applied = 9;
+}
+
+// ImportFlutterRequest provides Blutter output directory path
+message ImportFlutterRequest {
+  string blutter_output_path = 1;  // Path to Blutter output directory (contains ida_script/addNames.py)
+}
+
+// ImportFlutterResponse describes applied Dart metadata stats
+message ImportFlutterResponse {
+  bool success = 1;
+  string error = 2;
+  double duration_seconds = 3;
+  uint32 functions_created = 4;
+  uint32 functions_named = 5;
 }
 
 // GetDwordAtRequest specifies address

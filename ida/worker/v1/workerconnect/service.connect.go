@@ -101,6 +101,9 @@ const (
 	// AnalysisToolsImportIl2CppProcedure is the fully-qualified name of the AnalysisTools's
 	// ImportIl2Cpp RPC.
 	AnalysisToolsImportIl2CppProcedure = "/ida.worker.v1.AnalysisTools/ImportIl2Cpp"
+	// AnalysisToolsImportFlutterProcedure is the fully-qualified name of the AnalysisTools's
+	// ImportFlutter RPC.
+	AnalysisToolsImportFlutterProcedure = "/ida.worker.v1.AnalysisTools/ImportFlutter"
 	// AnalysisToolsGetGlobalsProcedure is the fully-qualified name of the AnalysisTools's GetGlobals
 	// RPC.
 	AnalysisToolsGetGlobalsProcedure = "/ida.worker.v1.AnalysisTools/GetGlobals"
@@ -402,6 +405,8 @@ type AnalysisToolsClient interface {
 	MakeFunction(context.Context, *connect.Request[v1.MakeFunctionRequest]) (*connect.Response[v1.MakeFunctionResponse], error)
 	// ImportIl2Cpp ingests Il2CppDumper metadata into the current database
 	ImportIl2Cpp(context.Context, *connect.Request[v1.ImportIl2CppRequest]) (*connect.Response[v1.ImportIl2CppResponse], error)
+	// ImportFlutter ingests Blutter output into the current database
+	ImportFlutter(context.Context, *connect.Request[v1.ImportFlutterRequest]) (*connect.Response[v1.ImportFlutterResponse], error)
 	// GetGlobals enumerates global variables
 	GetGlobals(context.Context, *connect.Request[v1.GetGlobalsRequest]) (*connect.Response[v1.GetGlobalsResponse], error)
 	// SetGlobalType sets the type of a global variable
@@ -569,6 +574,12 @@ func NewAnalysisToolsClient(httpClient connect.HTTPClient, baseURL string, opts 
 			httpClient,
 			baseURL+AnalysisToolsImportIl2CppProcedure,
 			connect.WithSchema(analysisToolsMethods.ByName("ImportIl2Cpp")),
+			connect.WithClientOptions(opts...),
+		),
+		importFlutter: connect.NewClient[v1.ImportFlutterRequest, v1.ImportFlutterResponse](
+			httpClient,
+			baseURL+AnalysisToolsImportFlutterProcedure,
+			connect.WithSchema(analysisToolsMethods.ByName("ImportFlutter")),
 			connect.WithClientOptions(opts...),
 		),
 		getGlobals: connect.NewClient[v1.GetGlobalsRequest, v1.GetGlobalsResponse](
@@ -755,6 +766,7 @@ type analysisToolsClient struct {
 	getStrings           *connect.Client[v1.GetStringsRequest, v1.GetStringsResponse]
 	makeFunction         *connect.Client[v1.MakeFunctionRequest, v1.MakeFunctionResponse]
 	importIl2Cpp         *connect.Client[v1.ImportIl2CppRequest, v1.ImportIl2CppResponse]
+	importFlutter        *connect.Client[v1.ImportFlutterRequest, v1.ImportFlutterResponse]
 	getGlobals           *connect.Client[v1.GetGlobalsRequest, v1.GetGlobalsResponse]
 	setGlobalType        *connect.Client[v1.SetGlobalTypeRequest, v1.SetGlobalTypeResponse]
 	renameGlobal         *connect.Client[v1.RenameGlobalRequest, v1.RenameGlobalResponse]
@@ -867,6 +879,11 @@ func (c *analysisToolsClient) MakeFunction(ctx context.Context, req *connect.Req
 // ImportIl2Cpp calls ida.worker.v1.AnalysisTools.ImportIl2Cpp.
 func (c *analysisToolsClient) ImportIl2Cpp(ctx context.Context, req *connect.Request[v1.ImportIl2CppRequest]) (*connect.Response[v1.ImportIl2CppResponse], error) {
 	return c.importIl2Cpp.CallUnary(ctx, req)
+}
+
+// ImportFlutter calls ida.worker.v1.AnalysisTools.ImportFlutter.
+func (c *analysisToolsClient) ImportFlutter(ctx context.Context, req *connect.Request[v1.ImportFlutterRequest]) (*connect.Response[v1.ImportFlutterResponse], error) {
+	return c.importFlutter.CallUnary(ctx, req)
 }
 
 // GetGlobals calls ida.worker.v1.AnalysisTools.GetGlobals.
@@ -1040,6 +1057,8 @@ type AnalysisToolsHandler interface {
 	MakeFunction(context.Context, *connect.Request[v1.MakeFunctionRequest]) (*connect.Response[v1.MakeFunctionResponse], error)
 	// ImportIl2Cpp ingests Il2CppDumper metadata into the current database
 	ImportIl2Cpp(context.Context, *connect.Request[v1.ImportIl2CppRequest]) (*connect.Response[v1.ImportIl2CppResponse], error)
+	// ImportFlutter ingests Blutter output into the current database
+	ImportFlutter(context.Context, *connect.Request[v1.ImportFlutterRequest]) (*connect.Response[v1.ImportFlutterResponse], error)
 	// GetGlobals enumerates global variables
 	GetGlobals(context.Context, *connect.Request[v1.GetGlobalsRequest]) (*connect.Response[v1.GetGlobalsResponse], error)
 	// SetGlobalType sets the type of a global variable
@@ -1203,6 +1222,12 @@ func NewAnalysisToolsHandler(svc AnalysisToolsHandler, opts ...connect.HandlerOp
 		AnalysisToolsImportIl2CppProcedure,
 		svc.ImportIl2Cpp,
 		connect.WithSchema(analysisToolsMethods.ByName("ImportIl2Cpp")),
+		connect.WithHandlerOptions(opts...),
+	)
+	analysisToolsImportFlutterHandler := connect.NewUnaryHandler(
+		AnalysisToolsImportFlutterProcedure,
+		svc.ImportFlutter,
+		connect.WithSchema(analysisToolsMethods.ByName("ImportFlutter")),
 		connect.WithHandlerOptions(opts...),
 	)
 	analysisToolsGetGlobalsHandler := connect.NewUnaryHandler(
@@ -1403,6 +1428,8 @@ func NewAnalysisToolsHandler(svc AnalysisToolsHandler, opts ...connect.HandlerOp
 			analysisToolsMakeFunctionHandler.ServeHTTP(w, r)
 		case AnalysisToolsImportIl2CppProcedure:
 			analysisToolsImportIl2CppHandler.ServeHTTP(w, r)
+		case AnalysisToolsImportFlutterProcedure:
+			analysisToolsImportFlutterHandler.ServeHTTP(w, r)
 		case AnalysisToolsGetGlobalsProcedure:
 			analysisToolsGetGlobalsHandler.ServeHTTP(w, r)
 		case AnalysisToolsSetGlobalTypeProcedure:
@@ -1532,6 +1559,10 @@ func (UnimplementedAnalysisToolsHandler) MakeFunction(context.Context, *connect.
 
 func (UnimplementedAnalysisToolsHandler) ImportIl2Cpp(context.Context, *connect.Request[v1.ImportIl2CppRequest]) (*connect.Response[v1.ImportIl2CppResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("ida.worker.v1.AnalysisTools.ImportIl2Cpp is not implemented"))
+}
+
+func (UnimplementedAnalysisToolsHandler) ImportFlutter(context.Context, *connect.Request[v1.ImportFlutterRequest]) (*connect.Response[v1.ImportFlutterResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("ida.worker.v1.AnalysisTools.ImportFlutter is not implemented"))
 }
 
 func (UnimplementedAnalysisToolsHandler) GetGlobals(context.Context, *connect.Request[v1.GetGlobalsRequest]) (*connect.Response[v1.GetGlobalsResponse], error) {

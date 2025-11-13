@@ -2807,6 +2807,128 @@ func (x *ImportIl2CppResponse) GetSignaturesApplied() uint32 {
 	return 0
 }
 
+// ImportFlutterRequest provides Blutter output directory path
+type ImportFlutterRequest struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	BlutterOutputPath string                 `protobuf:"bytes,1,opt,name=blutter_output_path,json=blutterOutputPath,proto3" json:"blutter_output_path,omitempty"` // Path to Blutter output directory (contains ida_script/addNames.py)
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *ImportFlutterRequest) Reset() {
+	*x = ImportFlutterRequest{}
+	mi := &file_ida_worker_v1_service_proto_msgTypes[52]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ImportFlutterRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ImportFlutterRequest) ProtoMessage() {}
+
+func (x *ImportFlutterRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ida_worker_v1_service_proto_msgTypes[52]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ImportFlutterRequest.ProtoReflect.Descriptor instead.
+func (*ImportFlutterRequest) Descriptor() ([]byte, []int) {
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{52}
+}
+
+func (x *ImportFlutterRequest) GetBlutterOutputPath() string {
+	if x != nil {
+		return x.BlutterOutputPath
+	}
+	return ""
+}
+
+// ImportFlutterResponse describes applied Dart metadata stats
+type ImportFlutterResponse struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	Success          bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Error            string                 `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
+	DurationSeconds  float64                `protobuf:"fixed64,3,opt,name=duration_seconds,json=durationSeconds,proto3" json:"duration_seconds,omitempty"`
+	FunctionsCreated uint32                 `protobuf:"varint,4,opt,name=functions_created,json=functionsCreated,proto3" json:"functions_created,omitempty"`
+	FunctionsNamed   uint32                 `protobuf:"varint,5,opt,name=functions_named,json=functionsNamed,proto3" json:"functions_named,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *ImportFlutterResponse) Reset() {
+	*x = ImportFlutterResponse{}
+	mi := &file_ida_worker_v1_service_proto_msgTypes[53]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ImportFlutterResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ImportFlutterResponse) ProtoMessage() {}
+
+func (x *ImportFlutterResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ida_worker_v1_service_proto_msgTypes[53]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ImportFlutterResponse.ProtoReflect.Descriptor instead.
+func (*ImportFlutterResponse) Descriptor() ([]byte, []int) {
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{53}
+}
+
+func (x *ImportFlutterResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *ImportFlutterResponse) GetError() string {
+	if x != nil {
+		return x.Error
+	}
+	return ""
+}
+
+func (x *ImportFlutterResponse) GetDurationSeconds() float64 {
+	if x != nil {
+		return x.DurationSeconds
+	}
+	return 0
+}
+
+func (x *ImportFlutterResponse) GetFunctionsCreated() uint32 {
+	if x != nil {
+		return x.FunctionsCreated
+	}
+	return 0
+}
+
+func (x *ImportFlutterResponse) GetFunctionsNamed() uint32 {
+	if x != nil {
+		return x.FunctionsNamed
+	}
+	return 0
+}
+
 // GetDwordAtRequest specifies address
 type GetDwordAtRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -2817,7 +2939,7 @@ type GetDwordAtRequest struct {
 
 func (x *GetDwordAtRequest) Reset() {
 	*x = GetDwordAtRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[52]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2829,7 +2951,7 @@ func (x *GetDwordAtRequest) String() string {
 func (*GetDwordAtRequest) ProtoMessage() {}
 
 func (x *GetDwordAtRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[52]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2842,7 +2964,7 @@ func (x *GetDwordAtRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDwordAtRequest.ProtoReflect.Descriptor instead.
 func (*GetDwordAtRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{52}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *GetDwordAtRequest) GetAddress() uint64 {
@@ -2863,7 +2985,7 @@ type GetDwordAtResponse struct {
 
 func (x *GetDwordAtResponse) Reset() {
 	*x = GetDwordAtResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[53]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2875,7 +2997,7 @@ func (x *GetDwordAtResponse) String() string {
 func (*GetDwordAtResponse) ProtoMessage() {}
 
 func (x *GetDwordAtResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[53]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2888,7 +3010,7 @@ func (x *GetDwordAtResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDwordAtResponse.ProtoReflect.Descriptor instead.
 func (*GetDwordAtResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{53}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *GetDwordAtResponse) GetValue() uint32 {
@@ -2915,7 +3037,7 @@ type GetQwordAtRequest struct {
 
 func (x *GetQwordAtRequest) Reset() {
 	*x = GetQwordAtRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[54]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2927,7 +3049,7 @@ func (x *GetQwordAtRequest) String() string {
 func (*GetQwordAtRequest) ProtoMessage() {}
 
 func (x *GetQwordAtRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[54]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2940,7 +3062,7 @@ func (x *GetQwordAtRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetQwordAtRequest.ProtoReflect.Descriptor instead.
 func (*GetQwordAtRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{54}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *GetQwordAtRequest) GetAddress() uint64 {
@@ -2961,7 +3083,7 @@ type GetQwordAtResponse struct {
 
 func (x *GetQwordAtResponse) Reset() {
 	*x = GetQwordAtResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[55]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2973,7 +3095,7 @@ func (x *GetQwordAtResponse) String() string {
 func (*GetQwordAtResponse) ProtoMessage() {}
 
 func (x *GetQwordAtResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[55]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2986,7 +3108,7 @@ func (x *GetQwordAtResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetQwordAtResponse.ProtoReflect.Descriptor instead.
 func (*GetQwordAtResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{55}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *GetQwordAtResponse) GetValue() uint64 {
@@ -3013,7 +3135,7 @@ type GetInstructionLengthRequest struct {
 
 func (x *GetInstructionLengthRequest) Reset() {
 	*x = GetInstructionLengthRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[56]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3025,7 +3147,7 @@ func (x *GetInstructionLengthRequest) String() string {
 func (*GetInstructionLengthRequest) ProtoMessage() {}
 
 func (x *GetInstructionLengthRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[56]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3038,7 +3160,7 @@ func (x *GetInstructionLengthRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetInstructionLengthRequest.ProtoReflect.Descriptor instead.
 func (*GetInstructionLengthRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{56}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *GetInstructionLengthRequest) GetAddress() uint64 {
@@ -3059,7 +3181,7 @@ type GetInstructionLengthResponse struct {
 
 func (x *GetInstructionLengthResponse) Reset() {
 	*x = GetInstructionLengthResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[57]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3071,7 +3193,7 @@ func (x *GetInstructionLengthResponse) String() string {
 func (*GetInstructionLengthResponse) ProtoMessage() {}
 
 func (x *GetInstructionLengthResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[57]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3084,7 +3206,7 @@ func (x *GetInstructionLengthResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetInstructionLengthResponse.ProtoReflect.Descriptor instead.
 func (*GetInstructionLengthResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{57}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *GetInstructionLengthResponse) GetLength() uint32 {
@@ -3110,7 +3232,7 @@ type PingRequest struct {
 
 func (x *PingRequest) Reset() {
 	*x = PingRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[58]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3122,7 +3244,7 @@ func (x *PingRequest) String() string {
 func (*PingRequest) ProtoMessage() {}
 
 func (x *PingRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[58]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3135,7 +3257,7 @@ func (x *PingRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PingRequest.ProtoReflect.Descriptor instead.
 func (*PingRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{58}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{60}
 }
 
 // PingResponse confirms alive
@@ -3148,7 +3270,7 @@ type PingResponse struct {
 
 func (x *PingResponse) Reset() {
 	*x = PingResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[59]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3160,7 +3282,7 @@ func (x *PingResponse) String() string {
 func (*PingResponse) ProtoMessage() {}
 
 func (x *PingResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[59]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3173,7 +3295,7 @@ func (x *PingResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PingResponse.ProtoReflect.Descriptor instead.
 func (*PingResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{59}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *PingResponse) GetAlive() bool {
@@ -3193,7 +3315,7 @@ type StatusStreamRequest struct {
 
 func (x *StatusStreamRequest) Reset() {
 	*x = StatusStreamRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[60]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3205,7 +3327,7 @@ func (x *StatusStreamRequest) String() string {
 func (*StatusStreamRequest) ProtoMessage() {}
 
 func (x *StatusStreamRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[60]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3218,7 +3340,7 @@ func (x *StatusStreamRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StatusStreamRequest.ProtoReflect.Descriptor instead.
 func (*StatusStreamRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{60}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *StatusStreamRequest) GetIntervalSeconds() uint32 {
@@ -3242,7 +3364,7 @@ type WorkerStatus struct {
 
 func (x *WorkerStatus) Reset() {
 	*x = WorkerStatus{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[61]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3254,7 +3376,7 @@ func (x *WorkerStatus) String() string {
 func (*WorkerStatus) ProtoMessage() {}
 
 func (x *WorkerStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[61]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3267,7 +3389,7 @@ func (x *WorkerStatus) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkerStatus.ProtoReflect.Descriptor instead.
 func (*WorkerStatus) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{61}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *WorkerStatus) GetTimestamp() int64 {
@@ -3317,7 +3439,7 @@ type SetCommentRequest struct {
 
 func (x *SetCommentRequest) Reset() {
 	*x = SetCommentRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[62]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3329,7 +3451,7 @@ func (x *SetCommentRequest) String() string {
 func (*SetCommentRequest) ProtoMessage() {}
 
 func (x *SetCommentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[62]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3342,7 +3464,7 @@ func (x *SetCommentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetCommentRequest.ProtoReflect.Descriptor instead.
 func (*SetCommentRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{62}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *SetCommentRequest) GetAddress() uint64 {
@@ -3377,7 +3499,7 @@ type SetCommentResponse struct {
 
 func (x *SetCommentResponse) Reset() {
 	*x = SetCommentResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[63]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3389,7 +3511,7 @@ func (x *SetCommentResponse) String() string {
 func (*SetCommentResponse) ProtoMessage() {}
 
 func (x *SetCommentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[63]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3402,7 +3524,7 @@ func (x *SetCommentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetCommentResponse.ProtoReflect.Descriptor instead.
 func (*SetCommentResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{63}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *SetCommentResponse) GetSuccess() bool {
@@ -3430,7 +3552,7 @@ type GetCommentRequest struct {
 
 func (x *GetCommentRequest) Reset() {
 	*x = GetCommentRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[64]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3442,7 +3564,7 @@ func (x *GetCommentRequest) String() string {
 func (*GetCommentRequest) ProtoMessage() {}
 
 func (x *GetCommentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[64]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3455,7 +3577,7 @@ func (x *GetCommentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCommentRequest.ProtoReflect.Descriptor instead.
 func (*GetCommentRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{64}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *GetCommentRequest) GetAddress() uint64 {
@@ -3483,7 +3605,7 @@ type GetCommentResponse struct {
 
 func (x *GetCommentResponse) Reset() {
 	*x = GetCommentResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[65]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3495,7 +3617,7 @@ func (x *GetCommentResponse) String() string {
 func (*GetCommentResponse) ProtoMessage() {}
 
 func (x *GetCommentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[65]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3508,7 +3630,7 @@ func (x *GetCommentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCommentResponse.ProtoReflect.Descriptor instead.
 func (*GetCommentResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{65}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *GetCommentResponse) GetComment() string {
@@ -3536,7 +3658,7 @@ type SetFuncCommentRequest struct {
 
 func (x *SetFuncCommentRequest) Reset() {
 	*x = SetFuncCommentRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[66]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3548,7 +3670,7 @@ func (x *SetFuncCommentRequest) String() string {
 func (*SetFuncCommentRequest) ProtoMessage() {}
 
 func (x *SetFuncCommentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[66]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3561,7 +3683,7 @@ func (x *SetFuncCommentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetFuncCommentRequest.ProtoReflect.Descriptor instead.
 func (*SetFuncCommentRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{66}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *SetFuncCommentRequest) GetAddress() uint64 {
@@ -3589,7 +3711,7 @@ type SetFuncCommentResponse struct {
 
 func (x *SetFuncCommentResponse) Reset() {
 	*x = SetFuncCommentResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[67]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3601,7 +3723,7 @@ func (x *SetFuncCommentResponse) String() string {
 func (*SetFuncCommentResponse) ProtoMessage() {}
 
 func (x *SetFuncCommentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[67]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3614,7 +3736,7 @@ func (x *SetFuncCommentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetFuncCommentResponse.ProtoReflect.Descriptor instead.
 func (*SetFuncCommentResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{67}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{69}
 }
 
 func (x *SetFuncCommentResponse) GetSuccess() bool {
@@ -3642,7 +3764,7 @@ type SetLvarTypeRequest struct {
 
 func (x *SetLvarTypeRequest) Reset() {
 	*x = SetLvarTypeRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[68]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3654,7 +3776,7 @@ func (x *SetLvarTypeRequest) String() string {
 func (*SetLvarTypeRequest) ProtoMessage() {}
 
 func (x *SetLvarTypeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[68]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3667,7 +3789,7 @@ func (x *SetLvarTypeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetLvarTypeRequest.ProtoReflect.Descriptor instead.
 func (*SetLvarTypeRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{68}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{70}
 }
 
 func (x *SetLvarTypeRequest) GetFunctionAddress() uint64 {
@@ -3701,7 +3823,7 @@ type SetLvarTypeResponse struct {
 
 func (x *SetLvarTypeResponse) Reset() {
 	*x = SetLvarTypeResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[69]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3713,7 +3835,7 @@ func (x *SetLvarTypeResponse) String() string {
 func (*SetLvarTypeResponse) ProtoMessage() {}
 
 func (x *SetLvarTypeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[69]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3726,7 +3848,7 @@ func (x *SetLvarTypeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetLvarTypeResponse.ProtoReflect.Descriptor instead.
 func (*SetLvarTypeResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{69}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *SetLvarTypeResponse) GetSuccess() bool {
@@ -3754,7 +3876,7 @@ type RenameLvarRequest struct {
 
 func (x *RenameLvarRequest) Reset() {
 	*x = RenameLvarRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[70]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3766,7 +3888,7 @@ func (x *RenameLvarRequest) String() string {
 func (*RenameLvarRequest) ProtoMessage() {}
 
 func (x *RenameLvarRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[70]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3779,7 +3901,7 @@ func (x *RenameLvarRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RenameLvarRequest.ProtoReflect.Descriptor instead.
 func (*RenameLvarRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{70}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{72}
 }
 
 func (x *RenameLvarRequest) GetFunctionAddress() uint64 {
@@ -3813,7 +3935,7 @@ type RenameLvarResponse struct {
 
 func (x *RenameLvarResponse) Reset() {
 	*x = RenameLvarResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[71]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3825,7 +3947,7 @@ func (x *RenameLvarResponse) String() string {
 func (*RenameLvarResponse) ProtoMessage() {}
 
 func (x *RenameLvarResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[71]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3838,7 +3960,7 @@ func (x *RenameLvarResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RenameLvarResponse.ProtoReflect.Descriptor instead.
 func (*RenameLvarResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{71}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{73}
 }
 
 func (x *RenameLvarResponse) GetSuccess() bool {
@@ -3866,7 +3988,7 @@ type SetDecompilerCommentRequest struct {
 
 func (x *SetDecompilerCommentRequest) Reset() {
 	*x = SetDecompilerCommentRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[72]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[74]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3878,7 +4000,7 @@ func (x *SetDecompilerCommentRequest) String() string {
 func (*SetDecompilerCommentRequest) ProtoMessage() {}
 
 func (x *SetDecompilerCommentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[72]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[74]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3891,7 +4013,7 @@ func (x *SetDecompilerCommentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetDecompilerCommentRequest.ProtoReflect.Descriptor instead.
 func (*SetDecompilerCommentRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{72}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{74}
 }
 
 func (x *SetDecompilerCommentRequest) GetFunctionAddress() uint64 {
@@ -3925,7 +4047,7 @@ type SetDecompilerCommentResponse struct {
 
 func (x *SetDecompilerCommentResponse) Reset() {
 	*x = SetDecompilerCommentResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[73]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[75]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3937,7 +4059,7 @@ func (x *SetDecompilerCommentResponse) String() string {
 func (*SetDecompilerCommentResponse) ProtoMessage() {}
 
 func (x *SetDecompilerCommentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[73]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[75]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3950,7 +4072,7 @@ func (x *SetDecompilerCommentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetDecompilerCommentResponse.ProtoReflect.Descriptor instead.
 func (*SetDecompilerCommentResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{73}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{75}
 }
 
 func (x *SetDecompilerCommentResponse) GetSuccess() bool {
@@ -3977,7 +4099,7 @@ type GetGlobalsRequest struct {
 
 func (x *GetGlobalsRequest) Reset() {
 	*x = GetGlobalsRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[74]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[76]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3989,7 +4111,7 @@ func (x *GetGlobalsRequest) String() string {
 func (*GetGlobalsRequest) ProtoMessage() {}
 
 func (x *GetGlobalsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[74]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[76]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4002,7 +4124,7 @@ func (x *GetGlobalsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGlobalsRequest.ProtoReflect.Descriptor instead.
 func (*GetGlobalsRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{74}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{76}
 }
 
 func (x *GetGlobalsRequest) GetRegex() string {
@@ -4030,7 +4152,7 @@ type GlobalVariable struct {
 
 func (x *GlobalVariable) Reset() {
 	*x = GlobalVariable{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[75]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[77]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4042,7 +4164,7 @@ func (x *GlobalVariable) String() string {
 func (*GlobalVariable) ProtoMessage() {}
 
 func (x *GlobalVariable) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[75]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[77]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4055,7 +4177,7 @@ func (x *GlobalVariable) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GlobalVariable.ProtoReflect.Descriptor instead.
 func (*GlobalVariable) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{75}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{77}
 }
 
 func (x *GlobalVariable) GetAddress() uint64 {
@@ -4089,7 +4211,7 @@ type GetGlobalsResponse struct {
 
 func (x *GetGlobalsResponse) Reset() {
 	*x = GetGlobalsResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[76]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4101,7 +4223,7 @@ func (x *GetGlobalsResponse) String() string {
 func (*GetGlobalsResponse) ProtoMessage() {}
 
 func (x *GetGlobalsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[76]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4114,7 +4236,7 @@ func (x *GetGlobalsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGlobalsResponse.ProtoReflect.Descriptor instead.
 func (*GetGlobalsResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{76}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{78}
 }
 
 func (x *GetGlobalsResponse) GetGlobals() []*GlobalVariable {
@@ -4141,7 +4263,7 @@ type SetGlobalTypeRequest struct {
 
 func (x *SetGlobalTypeRequest) Reset() {
 	*x = SetGlobalTypeRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[77]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[79]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4153,7 +4275,7 @@ func (x *SetGlobalTypeRequest) String() string {
 func (*SetGlobalTypeRequest) ProtoMessage() {}
 
 func (x *SetGlobalTypeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[77]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[79]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4166,7 +4288,7 @@ func (x *SetGlobalTypeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetGlobalTypeRequest.ProtoReflect.Descriptor instead.
 func (*SetGlobalTypeRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{77}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{79}
 }
 
 func (x *SetGlobalTypeRequest) GetAddress() uint64 {
@@ -4193,7 +4315,7 @@ type SetGlobalTypeResponse struct {
 
 func (x *SetGlobalTypeResponse) Reset() {
 	*x = SetGlobalTypeResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[78]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4205,7 +4327,7 @@ func (x *SetGlobalTypeResponse) String() string {
 func (*SetGlobalTypeResponse) ProtoMessage() {}
 
 func (x *SetGlobalTypeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[78]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4218,7 +4340,7 @@ func (x *SetGlobalTypeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetGlobalTypeResponse.ProtoReflect.Descriptor instead.
 func (*SetGlobalTypeResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{78}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{80}
 }
 
 func (x *SetGlobalTypeResponse) GetSuccess() bool {
@@ -4245,7 +4367,7 @@ type RenameGlobalRequest struct {
 
 func (x *RenameGlobalRequest) Reset() {
 	*x = RenameGlobalRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[79]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[81]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4257,7 +4379,7 @@ func (x *RenameGlobalRequest) String() string {
 func (*RenameGlobalRequest) ProtoMessage() {}
 
 func (x *RenameGlobalRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[79]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[81]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4270,7 +4392,7 @@ func (x *RenameGlobalRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RenameGlobalRequest.ProtoReflect.Descriptor instead.
 func (*RenameGlobalRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{79}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{81}
 }
 
 func (x *RenameGlobalRequest) GetAddress() uint64 {
@@ -4297,7 +4419,7 @@ type RenameGlobalResponse struct {
 
 func (x *RenameGlobalResponse) Reset() {
 	*x = RenameGlobalResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[80]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[82]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4309,7 +4431,7 @@ func (x *RenameGlobalResponse) String() string {
 func (*RenameGlobalResponse) ProtoMessage() {}
 
 func (x *RenameGlobalResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[80]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[82]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4322,7 +4444,7 @@ func (x *RenameGlobalResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RenameGlobalResponse.ProtoReflect.Descriptor instead.
 func (*RenameGlobalResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{80}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{82}
 }
 
 func (x *RenameGlobalResponse) GetSuccess() bool {
@@ -4349,7 +4471,7 @@ type DataReadStringRequest struct {
 
 func (x *DataReadStringRequest) Reset() {
 	*x = DataReadStringRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[81]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4361,7 +4483,7 @@ func (x *DataReadStringRequest) String() string {
 func (*DataReadStringRequest) ProtoMessage() {}
 
 func (x *DataReadStringRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[81]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4374,7 +4496,7 @@ func (x *DataReadStringRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DataReadStringRequest.ProtoReflect.Descriptor instead.
 func (*DataReadStringRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{81}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{83}
 }
 
 func (x *DataReadStringRequest) GetAddress() uint64 {
@@ -4401,7 +4523,7 @@ type DataReadStringResponse struct {
 
 func (x *DataReadStringResponse) Reset() {
 	*x = DataReadStringResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[82]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[84]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4413,7 +4535,7 @@ func (x *DataReadStringResponse) String() string {
 func (*DataReadStringResponse) ProtoMessage() {}
 
 func (x *DataReadStringResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[82]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[84]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4426,7 +4548,7 @@ func (x *DataReadStringResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DataReadStringResponse.ProtoReflect.Descriptor instead.
 func (*DataReadStringResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{82}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{84}
 }
 
 func (x *DataReadStringResponse) GetValue() string {
@@ -4452,7 +4574,7 @@ type DataReadByteRequest struct {
 
 func (x *DataReadByteRequest) Reset() {
 	*x = DataReadByteRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[83]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[85]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4464,7 +4586,7 @@ func (x *DataReadByteRequest) String() string {
 func (*DataReadByteRequest) ProtoMessage() {}
 
 func (x *DataReadByteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[83]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[85]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4477,7 +4599,7 @@ func (x *DataReadByteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DataReadByteRequest.ProtoReflect.Descriptor instead.
 func (*DataReadByteRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{83}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{85}
 }
 
 func (x *DataReadByteRequest) GetAddress() uint64 {
@@ -4497,7 +4619,7 @@ type DataReadByteResponse struct {
 
 func (x *DataReadByteResponse) Reset() {
 	*x = DataReadByteResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[84]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[86]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4509,7 +4631,7 @@ func (x *DataReadByteResponse) String() string {
 func (*DataReadByteResponse) ProtoMessage() {}
 
 func (x *DataReadByteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[84]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[86]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4522,7 +4644,7 @@ func (x *DataReadByteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DataReadByteResponse.ProtoReflect.Descriptor instead.
 func (*DataReadByteResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{84}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{86}
 }
 
 func (x *DataReadByteResponse) GetValue() uint32 {
@@ -4549,7 +4671,7 @@ type ListStructsRequest struct {
 
 func (x *ListStructsRequest) Reset() {
 	*x = ListStructsRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[85]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[87]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4561,7 +4683,7 @@ func (x *ListStructsRequest) String() string {
 func (*ListStructsRequest) ProtoMessage() {}
 
 func (x *ListStructsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[85]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[87]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4574,7 +4696,7 @@ func (x *ListStructsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListStructsRequest.ProtoReflect.Descriptor instead.
 func (*ListStructsRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{85}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{87}
 }
 
 func (x *ListStructsRequest) GetRegex() string {
@@ -4602,7 +4724,7 @@ type StructSummary struct {
 
 func (x *StructSummary) Reset() {
 	*x = StructSummary{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[86]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[88]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4614,7 +4736,7 @@ func (x *StructSummary) String() string {
 func (*StructSummary) ProtoMessage() {}
 
 func (x *StructSummary) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[86]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[88]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4627,7 +4749,7 @@ func (x *StructSummary) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StructSummary.ProtoReflect.Descriptor instead.
 func (*StructSummary) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{86}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{88}
 }
 
 func (x *StructSummary) GetName() string {
@@ -4661,7 +4783,7 @@ type ListStructsResponse struct {
 
 func (x *ListStructsResponse) Reset() {
 	*x = ListStructsResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[87]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[89]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4673,7 +4795,7 @@ func (x *ListStructsResponse) String() string {
 func (*ListStructsResponse) ProtoMessage() {}
 
 func (x *ListStructsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[87]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[89]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4686,7 +4808,7 @@ func (x *ListStructsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListStructsResponse.ProtoReflect.Descriptor instead.
 func (*ListStructsResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{87}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{89}
 }
 
 func (x *ListStructsResponse) GetStructs() []*StructSummary {
@@ -4712,7 +4834,7 @@ type GetStructRequest struct {
 
 func (x *GetStructRequest) Reset() {
 	*x = GetStructRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[88]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[90]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4724,7 +4846,7 @@ func (x *GetStructRequest) String() string {
 func (*GetStructRequest) ProtoMessage() {}
 
 func (x *GetStructRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[88]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[90]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4737,7 +4859,7 @@ func (x *GetStructRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetStructRequest.ProtoReflect.Descriptor instead.
 func (*GetStructRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{88}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{90}
 }
 
 func (x *GetStructRequest) GetName() string {
@@ -4759,7 +4881,7 @@ type StructMember struct {
 
 func (x *StructMember) Reset() {
 	*x = StructMember{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[89]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[91]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4771,7 +4893,7 @@ func (x *StructMember) String() string {
 func (*StructMember) ProtoMessage() {}
 
 func (x *StructMember) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[89]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[91]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4784,7 +4906,7 @@ func (x *StructMember) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StructMember.ProtoReflect.Descriptor instead.
 func (*StructMember) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{89}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{91}
 }
 
 func (x *StructMember) GetName() string {
@@ -4828,7 +4950,7 @@ type GetStructResponse struct {
 
 func (x *GetStructResponse) Reset() {
 	*x = GetStructResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[90]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[92]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4840,7 +4962,7 @@ func (x *GetStructResponse) String() string {
 func (*GetStructResponse) ProtoMessage() {}
 
 func (x *GetStructResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[90]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[92]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4853,7 +4975,7 @@ func (x *GetStructResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetStructResponse.ProtoReflect.Descriptor instead.
 func (*GetStructResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{90}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{92}
 }
 
 func (x *GetStructResponse) GetName() string {
@@ -4901,7 +5023,7 @@ type ListEnumsRequest struct {
 
 func (x *ListEnumsRequest) Reset() {
 	*x = ListEnumsRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[91]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[93]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4913,7 +5035,7 @@ func (x *ListEnumsRequest) String() string {
 func (*ListEnumsRequest) ProtoMessage() {}
 
 func (x *ListEnumsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[91]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[93]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4926,7 +5048,7 @@ func (x *ListEnumsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEnumsRequest.ProtoReflect.Descriptor instead.
 func (*ListEnumsRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{91}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{93}
 }
 
 func (x *ListEnumsRequest) GetRegex() string {
@@ -4953,7 +5075,7 @@ type EnumSummary struct {
 
 func (x *EnumSummary) Reset() {
 	*x = EnumSummary{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[92]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[94]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4965,7 +5087,7 @@ func (x *EnumSummary) String() string {
 func (*EnumSummary) ProtoMessage() {}
 
 func (x *EnumSummary) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[92]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[94]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4978,7 +5100,7 @@ func (x *EnumSummary) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnumSummary.ProtoReflect.Descriptor instead.
 func (*EnumSummary) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{92}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{94}
 }
 
 func (x *EnumSummary) GetName() string {
@@ -5005,7 +5127,7 @@ type ListEnumsResponse struct {
 
 func (x *ListEnumsResponse) Reset() {
 	*x = ListEnumsResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[93]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[95]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5017,7 +5139,7 @@ func (x *ListEnumsResponse) String() string {
 func (*ListEnumsResponse) ProtoMessage() {}
 
 func (x *ListEnumsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[93]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[95]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5030,7 +5152,7 @@ func (x *ListEnumsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEnumsResponse.ProtoReflect.Descriptor instead.
 func (*ListEnumsResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{93}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{95}
 }
 
 func (x *ListEnumsResponse) GetEnums() []*EnumSummary {
@@ -5056,7 +5178,7 @@ type GetEnumRequest struct {
 
 func (x *GetEnumRequest) Reset() {
 	*x = GetEnumRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[94]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[96]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5068,7 +5190,7 @@ func (x *GetEnumRequest) String() string {
 func (*GetEnumRequest) ProtoMessage() {}
 
 func (x *GetEnumRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[94]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[96]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5081,7 +5203,7 @@ func (x *GetEnumRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetEnumRequest.ProtoReflect.Descriptor instead.
 func (*GetEnumRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{94}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{96}
 }
 
 func (x *GetEnumRequest) GetName() string {
@@ -5101,7 +5223,7 @@ type EnumMember struct {
 
 func (x *EnumMember) Reset() {
 	*x = EnumMember{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[95]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[97]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5113,7 +5235,7 @@ func (x *EnumMember) String() string {
 func (*EnumMember) ProtoMessage() {}
 
 func (x *EnumMember) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[95]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[97]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5126,7 +5248,7 @@ func (x *EnumMember) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnumMember.ProtoReflect.Descriptor instead.
 func (*EnumMember) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{95}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{97}
 }
 
 func (x *EnumMember) GetName() string {
@@ -5155,7 +5277,7 @@ type GetEnumResponse struct {
 
 func (x *GetEnumResponse) Reset() {
 	*x = GetEnumResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[96]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[98]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5167,7 +5289,7 @@ func (x *GetEnumResponse) String() string {
 func (*GetEnumResponse) ProtoMessage() {}
 
 func (x *GetEnumResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[96]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[98]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5180,7 +5302,7 @@ func (x *GetEnumResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetEnumResponse.ProtoReflect.Descriptor instead.
 func (*GetEnumResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{96}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{98}
 }
 
 func (x *GetEnumResponse) GetName() string {
@@ -5220,7 +5342,7 @@ type GetFunctionInfoRequest struct {
 
 func (x *GetFunctionInfoRequest) Reset() {
 	*x = GetFunctionInfoRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[97]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[99]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5232,7 +5354,7 @@ func (x *GetFunctionInfoRequest) String() string {
 func (*GetFunctionInfoRequest) ProtoMessage() {}
 
 func (x *GetFunctionInfoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[97]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[99]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5245,7 +5367,7 @@ func (x *GetFunctionInfoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFunctionInfoRequest.ProtoReflect.Descriptor instead.
 func (*GetFunctionInfoRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{97}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{99}
 }
 
 func (x *GetFunctionInfoRequest) GetAddress() uint64 {
@@ -5268,7 +5390,7 @@ type FunctionFlags struct {
 
 func (x *FunctionFlags) Reset() {
 	*x = FunctionFlags{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[98]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[100]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5280,7 +5402,7 @@ func (x *FunctionFlags) String() string {
 func (*FunctionFlags) ProtoMessage() {}
 
 func (x *FunctionFlags) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[98]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[100]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5293,7 +5415,7 @@ func (x *FunctionFlags) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FunctionFlags.ProtoReflect.Descriptor instead.
 func (*FunctionFlags) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{98}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{100}
 }
 
 func (x *FunctionFlags) GetIsLibrary() bool {
@@ -5350,7 +5472,7 @@ type GetFunctionInfoResponse struct {
 
 func (x *GetFunctionInfoResponse) Reset() {
 	*x = GetFunctionInfoResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[99]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[101]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5362,7 +5484,7 @@ func (x *GetFunctionInfoResponse) String() string {
 func (*GetFunctionInfoResponse) ProtoMessage() {}
 
 func (x *GetFunctionInfoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[99]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[101]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5375,7 +5497,7 @@ func (x *GetFunctionInfoResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFunctionInfoResponse.ProtoReflect.Descriptor instead.
 func (*GetFunctionInfoResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{99}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{101}
 }
 
 func (x *GetFunctionInfoResponse) GetAddress() uint64 {
@@ -5464,7 +5586,7 @@ type GetTypeAtRequest struct {
 
 func (x *GetTypeAtRequest) Reset() {
 	*x = GetTypeAtRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[100]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[102]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5476,7 +5598,7 @@ func (x *GetTypeAtRequest) String() string {
 func (*GetTypeAtRequest) ProtoMessage() {}
 
 func (x *GetTypeAtRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[100]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[102]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5489,7 +5611,7 @@ func (x *GetTypeAtRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTypeAtRequest.ProtoReflect.Descriptor instead.
 func (*GetTypeAtRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{100}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{102}
 }
 
 func (x *GetTypeAtRequest) GetAddress() uint64 {
@@ -5518,7 +5640,7 @@ type GetTypeAtResponse struct {
 
 func (x *GetTypeAtResponse) Reset() {
 	*x = GetTypeAtResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[101]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[103]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5530,7 +5652,7 @@ func (x *GetTypeAtResponse) String() string {
 func (*GetTypeAtResponse) ProtoMessage() {}
 
 func (x *GetTypeAtResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[101]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[103]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5543,7 +5665,7 @@ func (x *GetTypeAtResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTypeAtResponse.ProtoReflect.Descriptor instead.
 func (*GetTypeAtResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{101}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{103}
 }
 
 func (x *GetTypeAtResponse) GetAddress() uint64 {
@@ -5635,7 +5757,7 @@ type FindBinaryRequest struct {
 
 func (x *FindBinaryRequest) Reset() {
 	*x = FindBinaryRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[102]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[104]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5647,7 +5769,7 @@ func (x *FindBinaryRequest) String() string {
 func (*FindBinaryRequest) ProtoMessage() {}
 
 func (x *FindBinaryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[102]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[104]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5660,7 +5782,7 @@ func (x *FindBinaryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindBinaryRequest.ProtoReflect.Descriptor instead.
 func (*FindBinaryRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{102}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{104}
 }
 
 func (x *FindBinaryRequest) GetStart() uint64 {
@@ -5701,7 +5823,7 @@ type FindBinaryResponse struct {
 
 func (x *FindBinaryResponse) Reset() {
 	*x = FindBinaryResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[103]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[105]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5713,7 +5835,7 @@ func (x *FindBinaryResponse) String() string {
 func (*FindBinaryResponse) ProtoMessage() {}
 
 func (x *FindBinaryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[103]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[105]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5726,7 +5848,7 @@ func (x *FindBinaryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindBinaryResponse.ProtoReflect.Descriptor instead.
 func (*FindBinaryResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{103}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{105}
 }
 
 func (x *FindBinaryResponse) GetAddresses() []uint64 {
@@ -5756,7 +5878,7 @@ type FindTextRequest struct {
 
 func (x *FindTextRequest) Reset() {
 	*x = FindTextRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[104]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[106]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5768,7 +5890,7 @@ func (x *FindTextRequest) String() string {
 func (*FindTextRequest) ProtoMessage() {}
 
 func (x *FindTextRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[104]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[106]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5781,7 +5903,7 @@ func (x *FindTextRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindTextRequest.ProtoReflect.Descriptor instead.
 func (*FindTextRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{104}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{106}
 }
 
 func (x *FindTextRequest) GetStart() uint64 {
@@ -5829,7 +5951,7 @@ type FindTextResponse struct {
 
 func (x *FindTextResponse) Reset() {
 	*x = FindTextResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[105]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[107]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5841,7 +5963,7 @@ func (x *FindTextResponse) String() string {
 func (*FindTextResponse) ProtoMessage() {}
 
 func (x *FindTextResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[105]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[107]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5854,7 +5976,7 @@ func (x *FindTextResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindTextResponse.ProtoReflect.Descriptor instead.
 func (*FindTextResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{105}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{107}
 }
 
 func (x *FindTextResponse) GetAddresses() []uint64 {
@@ -5881,7 +6003,7 @@ type GetFuncCommentRequest struct {
 
 func (x *GetFuncCommentRequest) Reset() {
 	*x = GetFuncCommentRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[106]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[108]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5893,7 +6015,7 @@ func (x *GetFuncCommentRequest) String() string {
 func (*GetFuncCommentRequest) ProtoMessage() {}
 
 func (x *GetFuncCommentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[106]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[108]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5906,7 +6028,7 @@ func (x *GetFuncCommentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFuncCommentRequest.ProtoReflect.Descriptor instead.
 func (*GetFuncCommentRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{106}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{108}
 }
 
 func (x *GetFuncCommentRequest) GetAddress() uint64 {
@@ -5927,7 +6049,7 @@ type GetFuncCommentResponse struct {
 
 func (x *GetFuncCommentResponse) Reset() {
 	*x = GetFuncCommentResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[107]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[109]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5939,7 +6061,7 @@ func (x *GetFuncCommentResponse) String() string {
 func (*GetFuncCommentResponse) ProtoMessage() {}
 
 func (x *GetFuncCommentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[107]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[109]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5952,7 +6074,7 @@ func (x *GetFuncCommentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFuncCommentResponse.ProtoReflect.Descriptor instead.
 func (*GetFuncCommentResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{107}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{109}
 }
 
 func (x *GetFuncCommentResponse) GetComment() string {
@@ -5980,7 +6102,7 @@ type SetNameRequest struct {
 
 func (x *SetNameRequest) Reset() {
 	*x = SetNameRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[108]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[110]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5992,7 +6114,7 @@ func (x *SetNameRequest) String() string {
 func (*SetNameRequest) ProtoMessage() {}
 
 func (x *SetNameRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[108]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[110]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6005,7 +6127,7 @@ func (x *SetNameRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetNameRequest.ProtoReflect.Descriptor instead.
 func (*SetNameRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{108}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{110}
 }
 
 func (x *SetNameRequest) GetAddress() uint64 {
@@ -6033,7 +6155,7 @@ type SetNameResponse struct {
 
 func (x *SetNameResponse) Reset() {
 	*x = SetNameResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[109]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[111]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6045,7 +6167,7 @@ func (x *SetNameResponse) String() string {
 func (*SetNameResponse) ProtoMessage() {}
 
 func (x *SetNameResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[109]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[111]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6058,7 +6180,7 @@ func (x *SetNameResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetNameResponse.ProtoReflect.Descriptor instead.
 func (*SetNameResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{109}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{111}
 }
 
 func (x *SetNameResponse) GetSuccess() bool {
@@ -6085,7 +6207,7 @@ type GetNameRequest struct {
 
 func (x *GetNameRequest) Reset() {
 	*x = GetNameRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[110]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[112]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6097,7 +6219,7 @@ func (x *GetNameRequest) String() string {
 func (*GetNameRequest) ProtoMessage() {}
 
 func (x *GetNameRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[110]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[112]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6110,7 +6232,7 @@ func (x *GetNameRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetNameRequest.ProtoReflect.Descriptor instead.
 func (*GetNameRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{110}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{112}
 }
 
 func (x *GetNameRequest) GetAddress() uint64 {
@@ -6131,7 +6253,7 @@ type GetNameResponse struct {
 
 func (x *GetNameResponse) Reset() {
 	*x = GetNameResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[111]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[113]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6143,7 +6265,7 @@ func (x *GetNameResponse) String() string {
 func (*GetNameResponse) ProtoMessage() {}
 
 func (x *GetNameResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[111]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[113]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6156,7 +6278,7 @@ func (x *GetNameResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetNameResponse.ProtoReflect.Descriptor instead.
 func (*GetNameResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{111}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{113}
 }
 
 func (x *GetNameResponse) GetName() string {
@@ -6183,7 +6305,7 @@ type DeleteNameRequest struct {
 
 func (x *DeleteNameRequest) Reset() {
 	*x = DeleteNameRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[112]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[114]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6195,7 +6317,7 @@ func (x *DeleteNameRequest) String() string {
 func (*DeleteNameRequest) ProtoMessage() {}
 
 func (x *DeleteNameRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[112]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[114]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6208,7 +6330,7 @@ func (x *DeleteNameRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteNameRequest.ProtoReflect.Descriptor instead.
 func (*DeleteNameRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{112}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{114}
 }
 
 func (x *DeleteNameRequest) GetAddress() uint64 {
@@ -6229,7 +6351,7 @@ type DeleteNameResponse struct {
 
 func (x *DeleteNameResponse) Reset() {
 	*x = DeleteNameResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[113]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[115]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6241,7 +6363,7 @@ func (x *DeleteNameResponse) String() string {
 func (*DeleteNameResponse) ProtoMessage() {}
 
 func (x *DeleteNameResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[113]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[115]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6254,7 +6376,7 @@ func (x *DeleteNameResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteNameResponse.ProtoReflect.Descriptor instead.
 func (*DeleteNameResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{113}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{115}
 }
 
 func (x *DeleteNameResponse) GetSuccess() bool {
@@ -6282,7 +6404,7 @@ type SetFunctionTypeRequest struct {
 
 func (x *SetFunctionTypeRequest) Reset() {
 	*x = SetFunctionTypeRequest{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[114]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[116]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6294,7 +6416,7 @@ func (x *SetFunctionTypeRequest) String() string {
 func (*SetFunctionTypeRequest) ProtoMessage() {}
 
 func (x *SetFunctionTypeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[114]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[116]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6307,7 +6429,7 @@ func (x *SetFunctionTypeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetFunctionTypeRequest.ProtoReflect.Descriptor instead.
 func (*SetFunctionTypeRequest) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{114}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{116}
 }
 
 func (x *SetFunctionTypeRequest) GetAddress() uint64 {
@@ -6335,7 +6457,7 @@ type SetFunctionTypeResponse struct {
 
 func (x *SetFunctionTypeResponse) Reset() {
 	*x = SetFunctionTypeResponse{}
-	mi := &file_ida_worker_v1_service_proto_msgTypes[115]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[117]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6347,7 +6469,7 @@ func (x *SetFunctionTypeResponse) String() string {
 func (*SetFunctionTypeResponse) ProtoMessage() {}
 
 func (x *SetFunctionTypeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ida_worker_v1_service_proto_msgTypes[115]
+	mi := &file_ida_worker_v1_service_proto_msgTypes[117]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6360,7 +6482,7 @@ func (x *SetFunctionTypeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetFunctionTypeResponse.ProtoReflect.Descriptor instead.
 func (*SetFunctionTypeResponse) Descriptor() ([]byte, []int) {
-	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{115}
+	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{117}
 }
 
 func (x *SetFunctionTypeResponse) GetSuccess() bool {
@@ -6549,7 +6671,15 @@ const file_ida_worker_v1_service_proto_rawDesc = "" +
 	"\x0emetadata_named\x18\x06 \x01(\rR\rmetadataNamed\x12)\n" +
 	"\x10metadata_methods\x18\a \x01(\rR\x0fmetadataMethods\x12+\n" +
 	"\x11functions_defined\x18\b \x01(\rR\x10functionsDefined\x12-\n" +
-	"\x12signatures_applied\x18\t \x01(\rR\x11signaturesApplied\"-\n" +
+	"\x12signatures_applied\x18\t \x01(\rR\x11signaturesApplied\"F\n" +
+	"\x14ImportFlutterRequest\x12.\n" +
+	"\x13blutter_output_path\x18\x01 \x01(\tR\x11blutterOutputPath\"\xc8\x01\n" +
+	"\x15ImportFlutterResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x14\n" +
+	"\x05error\x18\x02 \x01(\tR\x05error\x12)\n" +
+	"\x10duration_seconds\x18\x03 \x01(\x01R\x0fdurationSeconds\x12+\n" +
+	"\x11functions_created\x18\x04 \x01(\rR\x10functionsCreated\x12'\n" +
+	"\x0ffunctions_named\x18\x05 \x01(\rR\x0efunctionsNamed\"-\n" +
 	"\x11GetDwordAtRequest\x12\x18\n" +
 	"\aaddress\x18\x01 \x01(\x04R\aaddress\"@\n" +
 	"\x12GetDwordAtResponse\x12\x14\n" +
@@ -6787,7 +6917,7 @@ const file_ida_worker_v1_service_proto_rawDesc = "" +
 	"\fCloseSession\x12\".ida.worker.v1.CloseSessionRequest\x1a#.ida.worker.v1.CloseSessionResponse\x12W\n" +
 	"\fSaveDatabase\x12\".ida.worker.v1.SaveDatabaseRequest\x1a#.ida.worker.v1.SaveDatabaseResponse\x12T\n" +
 	"\vPlanAndWait\x12!.ida.worker.v1.PlanAndWaitRequest\x1a\".ida.worker.v1.PlanAndWaitResponse\x12]\n" +
-	"\x0eGetSessionInfo\x12$.ida.worker.v1.GetSessionInfoRequest\x1a%.ida.worker.v1.GetSessionInfoResponse2\x99\x1e\n" +
+	"\x0eGetSessionInfo\x12$.ida.worker.v1.GetSessionInfoRequest\x1a%.ida.worker.v1.GetSessionInfoResponse2\xf5\x1e\n" +
 	"\rAnalysisTools\x12K\n" +
 	"\bGetBytes\x12\x1e.ida.worker.v1.GetBytesRequest\x1a\x1f.ida.worker.v1.GetBytesResponse\x12N\n" +
 	"\tGetDisasm\x12\x1f.ida.worker.v1.GetDisasmRequest\x1a .ida.worker.v1.GetDisasmResponse\x12f\n" +
@@ -6809,7 +6939,8 @@ const file_ida_worker_v1_service_proto_rawDesc = "" +
 	"\n" +
 	"GetStrings\x12 .ida.worker.v1.GetStringsRequest\x1a!.ida.worker.v1.GetStringsResponse\x12W\n" +
 	"\fMakeFunction\x12\".ida.worker.v1.MakeFunctionRequest\x1a#.ida.worker.v1.MakeFunctionResponse\x12W\n" +
-	"\fImportIl2Cpp\x12\".ida.worker.v1.ImportIl2CppRequest\x1a#.ida.worker.v1.ImportIl2CppResponse\x12Q\n" +
+	"\fImportIl2Cpp\x12\".ida.worker.v1.ImportIl2CppRequest\x1a#.ida.worker.v1.ImportIl2CppResponse\x12Z\n" +
+	"\rImportFlutter\x12#.ida.worker.v1.ImportFlutterRequest\x1a$.ida.worker.v1.ImportFlutterResponse\x12Q\n" +
 	"\n" +
 	"GetGlobals\x12 .ida.worker.v1.GetGlobalsRequest\x1a!.ida.worker.v1.GetGlobalsResponse\x12Z\n" +
 	"\rSetGlobalType\x12#.ida.worker.v1.SetGlobalTypeRequest\x1a$.ida.worker.v1.SetGlobalTypeResponse\x12W\n" +
@@ -6861,7 +6992,7 @@ func file_ida_worker_v1_service_proto_rawDescGZIP() []byte {
 	return file_ida_worker_v1_service_proto_rawDescData
 }
 
-var file_ida_worker_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 116)
+var file_ida_worker_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 118)
 var file_ida_worker_v1_service_proto_goTypes = []any{
 	(*OpenBinaryRequest)(nil),            // 0: ida.worker.v1.OpenBinaryRequest
 	(*OpenBinaryResponse)(nil),           // 1: ida.worker.v1.OpenBinaryResponse
@@ -6915,70 +7046,72 @@ var file_ida_worker_v1_service_proto_goTypes = []any{
 	(*MakeFunctionResponse)(nil),         // 49: ida.worker.v1.MakeFunctionResponse
 	(*ImportIl2CppRequest)(nil),          // 50: ida.worker.v1.ImportIl2CppRequest
 	(*ImportIl2CppResponse)(nil),         // 51: ida.worker.v1.ImportIl2CppResponse
-	(*GetDwordAtRequest)(nil),            // 52: ida.worker.v1.GetDwordAtRequest
-	(*GetDwordAtResponse)(nil),           // 53: ida.worker.v1.GetDwordAtResponse
-	(*GetQwordAtRequest)(nil),            // 54: ida.worker.v1.GetQwordAtRequest
-	(*GetQwordAtResponse)(nil),           // 55: ida.worker.v1.GetQwordAtResponse
-	(*GetInstructionLengthRequest)(nil),  // 56: ida.worker.v1.GetInstructionLengthRequest
-	(*GetInstructionLengthResponse)(nil), // 57: ida.worker.v1.GetInstructionLengthResponse
-	(*PingRequest)(nil),                  // 58: ida.worker.v1.PingRequest
-	(*PingResponse)(nil),                 // 59: ida.worker.v1.PingResponse
-	(*StatusStreamRequest)(nil),          // 60: ida.worker.v1.StatusStreamRequest
-	(*WorkerStatus)(nil),                 // 61: ida.worker.v1.WorkerStatus
-	(*SetCommentRequest)(nil),            // 62: ida.worker.v1.SetCommentRequest
-	(*SetCommentResponse)(nil),           // 63: ida.worker.v1.SetCommentResponse
-	(*GetCommentRequest)(nil),            // 64: ida.worker.v1.GetCommentRequest
-	(*GetCommentResponse)(nil),           // 65: ida.worker.v1.GetCommentResponse
-	(*SetFuncCommentRequest)(nil),        // 66: ida.worker.v1.SetFuncCommentRequest
-	(*SetFuncCommentResponse)(nil),       // 67: ida.worker.v1.SetFuncCommentResponse
-	(*SetLvarTypeRequest)(nil),           // 68: ida.worker.v1.SetLvarTypeRequest
-	(*SetLvarTypeResponse)(nil),          // 69: ida.worker.v1.SetLvarTypeResponse
-	(*RenameLvarRequest)(nil),            // 70: ida.worker.v1.RenameLvarRequest
-	(*RenameLvarResponse)(nil),           // 71: ida.worker.v1.RenameLvarResponse
-	(*SetDecompilerCommentRequest)(nil),  // 72: ida.worker.v1.SetDecompilerCommentRequest
-	(*SetDecompilerCommentResponse)(nil), // 73: ida.worker.v1.SetDecompilerCommentResponse
-	(*GetGlobalsRequest)(nil),            // 74: ida.worker.v1.GetGlobalsRequest
-	(*GlobalVariable)(nil),               // 75: ida.worker.v1.GlobalVariable
-	(*GetGlobalsResponse)(nil),           // 76: ida.worker.v1.GetGlobalsResponse
-	(*SetGlobalTypeRequest)(nil),         // 77: ida.worker.v1.SetGlobalTypeRequest
-	(*SetGlobalTypeResponse)(nil),        // 78: ida.worker.v1.SetGlobalTypeResponse
-	(*RenameGlobalRequest)(nil),          // 79: ida.worker.v1.RenameGlobalRequest
-	(*RenameGlobalResponse)(nil),         // 80: ida.worker.v1.RenameGlobalResponse
-	(*DataReadStringRequest)(nil),        // 81: ida.worker.v1.DataReadStringRequest
-	(*DataReadStringResponse)(nil),       // 82: ida.worker.v1.DataReadStringResponse
-	(*DataReadByteRequest)(nil),          // 83: ida.worker.v1.DataReadByteRequest
-	(*DataReadByteResponse)(nil),         // 84: ida.worker.v1.DataReadByteResponse
-	(*ListStructsRequest)(nil),           // 85: ida.worker.v1.ListStructsRequest
-	(*StructSummary)(nil),                // 86: ida.worker.v1.StructSummary
-	(*ListStructsResponse)(nil),          // 87: ida.worker.v1.ListStructsResponse
-	(*GetStructRequest)(nil),             // 88: ida.worker.v1.GetStructRequest
-	(*StructMember)(nil),                 // 89: ida.worker.v1.StructMember
-	(*GetStructResponse)(nil),            // 90: ida.worker.v1.GetStructResponse
-	(*ListEnumsRequest)(nil),             // 91: ida.worker.v1.ListEnumsRequest
-	(*EnumSummary)(nil),                  // 92: ida.worker.v1.EnumSummary
-	(*ListEnumsResponse)(nil),            // 93: ida.worker.v1.ListEnumsResponse
-	(*GetEnumRequest)(nil),               // 94: ida.worker.v1.GetEnumRequest
-	(*EnumMember)(nil),                   // 95: ida.worker.v1.EnumMember
-	(*GetEnumResponse)(nil),              // 96: ida.worker.v1.GetEnumResponse
-	(*GetFunctionInfoRequest)(nil),       // 97: ida.worker.v1.GetFunctionInfoRequest
-	(*FunctionFlags)(nil),                // 98: ida.worker.v1.FunctionFlags
-	(*GetFunctionInfoResponse)(nil),      // 99: ida.worker.v1.GetFunctionInfoResponse
-	(*GetTypeAtRequest)(nil),             // 100: ida.worker.v1.GetTypeAtRequest
-	(*GetTypeAtResponse)(nil),            // 101: ida.worker.v1.GetTypeAtResponse
-	(*FindBinaryRequest)(nil),            // 102: ida.worker.v1.FindBinaryRequest
-	(*FindBinaryResponse)(nil),           // 103: ida.worker.v1.FindBinaryResponse
-	(*FindTextRequest)(nil),              // 104: ida.worker.v1.FindTextRequest
-	(*FindTextResponse)(nil),             // 105: ida.worker.v1.FindTextResponse
-	(*GetFuncCommentRequest)(nil),        // 106: ida.worker.v1.GetFuncCommentRequest
-	(*GetFuncCommentResponse)(nil),       // 107: ida.worker.v1.GetFuncCommentResponse
-	(*SetNameRequest)(nil),               // 108: ida.worker.v1.SetNameRequest
-	(*SetNameResponse)(nil),              // 109: ida.worker.v1.SetNameResponse
-	(*GetNameRequest)(nil),               // 110: ida.worker.v1.GetNameRequest
-	(*GetNameResponse)(nil),              // 111: ida.worker.v1.GetNameResponse
-	(*DeleteNameRequest)(nil),            // 112: ida.worker.v1.DeleteNameRequest
-	(*DeleteNameResponse)(nil),           // 113: ida.worker.v1.DeleteNameResponse
-	(*SetFunctionTypeRequest)(nil),       // 114: ida.worker.v1.SetFunctionTypeRequest
-	(*SetFunctionTypeResponse)(nil),      // 115: ida.worker.v1.SetFunctionTypeResponse
+	(*ImportFlutterRequest)(nil),         // 52: ida.worker.v1.ImportFlutterRequest
+	(*ImportFlutterResponse)(nil),        // 53: ida.worker.v1.ImportFlutterResponse
+	(*GetDwordAtRequest)(nil),            // 54: ida.worker.v1.GetDwordAtRequest
+	(*GetDwordAtResponse)(nil),           // 55: ida.worker.v1.GetDwordAtResponse
+	(*GetQwordAtRequest)(nil),            // 56: ida.worker.v1.GetQwordAtRequest
+	(*GetQwordAtResponse)(nil),           // 57: ida.worker.v1.GetQwordAtResponse
+	(*GetInstructionLengthRequest)(nil),  // 58: ida.worker.v1.GetInstructionLengthRequest
+	(*GetInstructionLengthResponse)(nil), // 59: ida.worker.v1.GetInstructionLengthResponse
+	(*PingRequest)(nil),                  // 60: ida.worker.v1.PingRequest
+	(*PingResponse)(nil),                 // 61: ida.worker.v1.PingResponse
+	(*StatusStreamRequest)(nil),          // 62: ida.worker.v1.StatusStreamRequest
+	(*WorkerStatus)(nil),                 // 63: ida.worker.v1.WorkerStatus
+	(*SetCommentRequest)(nil),            // 64: ida.worker.v1.SetCommentRequest
+	(*SetCommentResponse)(nil),           // 65: ida.worker.v1.SetCommentResponse
+	(*GetCommentRequest)(nil),            // 66: ida.worker.v1.GetCommentRequest
+	(*GetCommentResponse)(nil),           // 67: ida.worker.v1.GetCommentResponse
+	(*SetFuncCommentRequest)(nil),        // 68: ida.worker.v1.SetFuncCommentRequest
+	(*SetFuncCommentResponse)(nil),       // 69: ida.worker.v1.SetFuncCommentResponse
+	(*SetLvarTypeRequest)(nil),           // 70: ida.worker.v1.SetLvarTypeRequest
+	(*SetLvarTypeResponse)(nil),          // 71: ida.worker.v1.SetLvarTypeResponse
+	(*RenameLvarRequest)(nil),            // 72: ida.worker.v1.RenameLvarRequest
+	(*RenameLvarResponse)(nil),           // 73: ida.worker.v1.RenameLvarResponse
+	(*SetDecompilerCommentRequest)(nil),  // 74: ida.worker.v1.SetDecompilerCommentRequest
+	(*SetDecompilerCommentResponse)(nil), // 75: ida.worker.v1.SetDecompilerCommentResponse
+	(*GetGlobalsRequest)(nil),            // 76: ida.worker.v1.GetGlobalsRequest
+	(*GlobalVariable)(nil),               // 77: ida.worker.v1.GlobalVariable
+	(*GetGlobalsResponse)(nil),           // 78: ida.worker.v1.GetGlobalsResponse
+	(*SetGlobalTypeRequest)(nil),         // 79: ida.worker.v1.SetGlobalTypeRequest
+	(*SetGlobalTypeResponse)(nil),        // 80: ida.worker.v1.SetGlobalTypeResponse
+	(*RenameGlobalRequest)(nil),          // 81: ida.worker.v1.RenameGlobalRequest
+	(*RenameGlobalResponse)(nil),         // 82: ida.worker.v1.RenameGlobalResponse
+	(*DataReadStringRequest)(nil),        // 83: ida.worker.v1.DataReadStringRequest
+	(*DataReadStringResponse)(nil),       // 84: ida.worker.v1.DataReadStringResponse
+	(*DataReadByteRequest)(nil),          // 85: ida.worker.v1.DataReadByteRequest
+	(*DataReadByteResponse)(nil),         // 86: ida.worker.v1.DataReadByteResponse
+	(*ListStructsRequest)(nil),           // 87: ida.worker.v1.ListStructsRequest
+	(*StructSummary)(nil),                // 88: ida.worker.v1.StructSummary
+	(*ListStructsResponse)(nil),          // 89: ida.worker.v1.ListStructsResponse
+	(*GetStructRequest)(nil),             // 90: ida.worker.v1.GetStructRequest
+	(*StructMember)(nil),                 // 91: ida.worker.v1.StructMember
+	(*GetStructResponse)(nil),            // 92: ida.worker.v1.GetStructResponse
+	(*ListEnumsRequest)(nil),             // 93: ida.worker.v1.ListEnumsRequest
+	(*EnumSummary)(nil),                  // 94: ida.worker.v1.EnumSummary
+	(*ListEnumsResponse)(nil),            // 95: ida.worker.v1.ListEnumsResponse
+	(*GetEnumRequest)(nil),               // 96: ida.worker.v1.GetEnumRequest
+	(*EnumMember)(nil),                   // 97: ida.worker.v1.EnumMember
+	(*GetEnumResponse)(nil),              // 98: ida.worker.v1.GetEnumResponse
+	(*GetFunctionInfoRequest)(nil),       // 99: ida.worker.v1.GetFunctionInfoRequest
+	(*FunctionFlags)(nil),                // 100: ida.worker.v1.FunctionFlags
+	(*GetFunctionInfoResponse)(nil),      // 101: ida.worker.v1.GetFunctionInfoResponse
+	(*GetTypeAtRequest)(nil),             // 102: ida.worker.v1.GetTypeAtRequest
+	(*GetTypeAtResponse)(nil),            // 103: ida.worker.v1.GetTypeAtResponse
+	(*FindBinaryRequest)(nil),            // 104: ida.worker.v1.FindBinaryRequest
+	(*FindBinaryResponse)(nil),           // 105: ida.worker.v1.FindBinaryResponse
+	(*FindTextRequest)(nil),              // 106: ida.worker.v1.FindTextRequest
+	(*FindTextResponse)(nil),             // 107: ida.worker.v1.FindTextResponse
+	(*GetFuncCommentRequest)(nil),        // 108: ida.worker.v1.GetFuncCommentRequest
+	(*GetFuncCommentResponse)(nil),       // 109: ida.worker.v1.GetFuncCommentResponse
+	(*SetNameRequest)(nil),               // 110: ida.worker.v1.SetNameRequest
+	(*SetNameResponse)(nil),              // 111: ida.worker.v1.SetNameResponse
+	(*GetNameRequest)(nil),               // 112: ida.worker.v1.GetNameRequest
+	(*GetNameResponse)(nil),              // 113: ida.worker.v1.GetNameResponse
+	(*DeleteNameRequest)(nil),            // 114: ida.worker.v1.DeleteNameRequest
+	(*DeleteNameResponse)(nil),           // 115: ida.worker.v1.DeleteNameResponse
+	(*SetFunctionTypeRequest)(nil),       // 116: ida.worker.v1.SetFunctionTypeRequest
+	(*SetFunctionTypeResponse)(nil),      // 117: ida.worker.v1.SetFunctionTypeResponse
 }
 var file_ida_worker_v1_service_proto_depIdxs = []int32{
 	21,  // 0: ida.worker.v1.GetSegmentsResponse.segments:type_name -> ida.worker.v1.Segment
@@ -6990,12 +7123,12 @@ var file_ida_worker_v1_service_proto_depIdxs = []int32{
 	38,  // 6: ida.worker.v1.GetImportsResponse.imports:type_name -> ida.worker.v1.Import
 	41,  // 7: ida.worker.v1.GetExportsResponse.exports:type_name -> ida.worker.v1.Export
 	46,  // 8: ida.worker.v1.GetStringsResponse.strings:type_name -> ida.worker.v1.StringItem
-	75,  // 9: ida.worker.v1.GetGlobalsResponse.globals:type_name -> ida.worker.v1.GlobalVariable
-	86,  // 10: ida.worker.v1.ListStructsResponse.structs:type_name -> ida.worker.v1.StructSummary
-	89,  // 11: ida.worker.v1.GetStructResponse.members:type_name -> ida.worker.v1.StructMember
-	92,  // 12: ida.worker.v1.ListEnumsResponse.enums:type_name -> ida.worker.v1.EnumSummary
-	95,  // 13: ida.worker.v1.GetEnumResponse.members:type_name -> ida.worker.v1.EnumMember
-	98,  // 14: ida.worker.v1.GetFunctionInfoResponse.flags:type_name -> ida.worker.v1.FunctionFlags
+	77,  // 9: ida.worker.v1.GetGlobalsResponse.globals:type_name -> ida.worker.v1.GlobalVariable
+	88,  // 10: ida.worker.v1.ListStructsResponse.structs:type_name -> ida.worker.v1.StructSummary
+	91,  // 11: ida.worker.v1.GetStructResponse.members:type_name -> ida.worker.v1.StructMember
+	94,  // 12: ida.worker.v1.ListEnumsResponse.enums:type_name -> ida.worker.v1.EnumSummary
+	97,  // 13: ida.worker.v1.GetEnumResponse.members:type_name -> ida.worker.v1.EnumMember
+	100, // 14: ida.worker.v1.GetFunctionInfoResponse.flags:type_name -> ida.worker.v1.FunctionFlags
 	0,   // 15: ida.worker.v1.SessionControl.OpenBinary:input_type -> ida.worker.v1.OpenBinaryRequest
 	2,   // 16: ida.worker.v1.SessionControl.CloseSession:input_type -> ida.worker.v1.CloseSessionRequest
 	4,   // 17: ida.worker.v1.SessionControl.SaveDatabase:input_type -> ida.worker.v1.SaveDatabaseRequest
@@ -7018,88 +7151,90 @@ var file_ida_worker_v1_service_proto_depIdxs = []int32{
 	45,  // 34: ida.worker.v1.AnalysisTools.GetStrings:input_type -> ida.worker.v1.GetStringsRequest
 	48,  // 35: ida.worker.v1.AnalysisTools.MakeFunction:input_type -> ida.worker.v1.MakeFunctionRequest
 	50,  // 36: ida.worker.v1.AnalysisTools.ImportIl2Cpp:input_type -> ida.worker.v1.ImportIl2CppRequest
-	74,  // 37: ida.worker.v1.AnalysisTools.GetGlobals:input_type -> ida.worker.v1.GetGlobalsRequest
-	77,  // 38: ida.worker.v1.AnalysisTools.SetGlobalType:input_type -> ida.worker.v1.SetGlobalTypeRequest
-	79,  // 39: ida.worker.v1.AnalysisTools.RenameGlobal:input_type -> ida.worker.v1.RenameGlobalRequest
-	81,  // 40: ida.worker.v1.AnalysisTools.DataReadString:input_type -> ida.worker.v1.DataReadStringRequest
-	83,  // 41: ida.worker.v1.AnalysisTools.DataReadByte:input_type -> ida.worker.v1.DataReadByteRequest
-	102, // 42: ida.worker.v1.AnalysisTools.FindBinary:input_type -> ida.worker.v1.FindBinaryRequest
-	104, // 43: ida.worker.v1.AnalysisTools.FindText:input_type -> ida.worker.v1.FindTextRequest
-	85,  // 44: ida.worker.v1.AnalysisTools.ListStructs:input_type -> ida.worker.v1.ListStructsRequest
-	88,  // 45: ida.worker.v1.AnalysisTools.GetStruct:input_type -> ida.worker.v1.GetStructRequest
-	91,  // 46: ida.worker.v1.AnalysisTools.ListEnums:input_type -> ida.worker.v1.ListEnumsRequest
-	94,  // 47: ida.worker.v1.AnalysisTools.GetEnum:input_type -> ida.worker.v1.GetEnumRequest
-	97,  // 48: ida.worker.v1.AnalysisTools.GetFunctionInfo:input_type -> ida.worker.v1.GetFunctionInfoRequest
-	100, // 49: ida.worker.v1.AnalysisTools.GetTypeAt:input_type -> ida.worker.v1.GetTypeAtRequest
-	52,  // 50: ida.worker.v1.AnalysisTools.GetDwordAt:input_type -> ida.worker.v1.GetDwordAtRequest
-	54,  // 51: ida.worker.v1.AnalysisTools.GetQwordAt:input_type -> ida.worker.v1.GetQwordAtRequest
-	56,  // 52: ida.worker.v1.AnalysisTools.GetInstructionLength:input_type -> ida.worker.v1.GetInstructionLengthRequest
-	62,  // 53: ida.worker.v1.AnalysisTools.SetComment:input_type -> ida.worker.v1.SetCommentRequest
-	64,  // 54: ida.worker.v1.AnalysisTools.GetComment:input_type -> ida.worker.v1.GetCommentRequest
-	66,  // 55: ida.worker.v1.AnalysisTools.SetFuncComment:input_type -> ida.worker.v1.SetFuncCommentRequest
-	106, // 56: ida.worker.v1.AnalysisTools.GetFuncComment:input_type -> ida.worker.v1.GetFuncCommentRequest
-	68,  // 57: ida.worker.v1.AnalysisTools.SetLvarType:input_type -> ida.worker.v1.SetLvarTypeRequest
-	70,  // 58: ida.worker.v1.AnalysisTools.RenameLvar:input_type -> ida.worker.v1.RenameLvarRequest
-	72,  // 59: ida.worker.v1.AnalysisTools.SetDecompilerComment:input_type -> ida.worker.v1.SetDecompilerCommentRequest
-	108, // 60: ida.worker.v1.AnalysisTools.SetName:input_type -> ida.worker.v1.SetNameRequest
-	110, // 61: ida.worker.v1.AnalysisTools.GetName:input_type -> ida.worker.v1.GetNameRequest
-	112, // 62: ida.worker.v1.AnalysisTools.DeleteName:input_type -> ida.worker.v1.DeleteNameRequest
-	114, // 63: ida.worker.v1.AnalysisTools.SetFunctionType:input_type -> ida.worker.v1.SetFunctionTypeRequest
-	58,  // 64: ida.worker.v1.Healthcheck.Ping:input_type -> ida.worker.v1.PingRequest
-	60,  // 65: ida.worker.v1.Healthcheck.StatusStream:input_type -> ida.worker.v1.StatusStreamRequest
-	1,   // 66: ida.worker.v1.SessionControl.OpenBinary:output_type -> ida.worker.v1.OpenBinaryResponse
-	3,   // 67: ida.worker.v1.SessionControl.CloseSession:output_type -> ida.worker.v1.CloseSessionResponse
-	5,   // 68: ida.worker.v1.SessionControl.SaveDatabase:output_type -> ida.worker.v1.SaveDatabaseResponse
-	7,   // 69: ida.worker.v1.SessionControl.PlanAndWait:output_type -> ida.worker.v1.PlanAndWaitResponse
-	9,   // 70: ida.worker.v1.SessionControl.GetSessionInfo:output_type -> ida.worker.v1.GetSessionInfoResponse
-	11,  // 71: ida.worker.v1.AnalysisTools.GetBytes:output_type -> ida.worker.v1.GetBytesResponse
-	13,  // 72: ida.worker.v1.AnalysisTools.GetDisasm:output_type -> ida.worker.v1.GetDisasmResponse
-	15,  // 73: ida.worker.v1.AnalysisTools.GetFunctionDisasm:output_type -> ida.worker.v1.GetFunctionDisasmResponse
-	17,  // 74: ida.worker.v1.AnalysisTools.GetDecompiled:output_type -> ida.worker.v1.GetDecompiledResponse
-	19,  // 75: ida.worker.v1.AnalysisTools.GetFunctionName:output_type -> ida.worker.v1.GetFunctionNameResponse
-	22,  // 76: ida.worker.v1.AnalysisTools.GetSegments:output_type -> ida.worker.v1.GetSegmentsResponse
-	25,  // 77: ida.worker.v1.AnalysisTools.GetFunctions:output_type -> ida.worker.v1.GetFunctionsResponse
-	28,  // 78: ida.worker.v1.AnalysisTools.GetXRefsTo:output_type -> ida.worker.v1.GetXRefsToResponse
-	30,  // 79: ida.worker.v1.AnalysisTools.GetXRefsFrom:output_type -> ida.worker.v1.GetXRefsFromResponse
-	33,  // 80: ida.worker.v1.AnalysisTools.GetDataRefs:output_type -> ida.worker.v1.GetDataRefsResponse
-	36,  // 81: ida.worker.v1.AnalysisTools.GetStringXRefs:output_type -> ida.worker.v1.GetStringXRefsResponse
-	39,  // 82: ida.worker.v1.AnalysisTools.GetImports:output_type -> ida.worker.v1.GetImportsResponse
-	42,  // 83: ida.worker.v1.AnalysisTools.GetExports:output_type -> ida.worker.v1.GetExportsResponse
-	44,  // 84: ida.worker.v1.AnalysisTools.GetEntryPoint:output_type -> ida.worker.v1.GetEntryPointResponse
-	47,  // 85: ida.worker.v1.AnalysisTools.GetStrings:output_type -> ida.worker.v1.GetStringsResponse
-	49,  // 86: ida.worker.v1.AnalysisTools.MakeFunction:output_type -> ida.worker.v1.MakeFunctionResponse
-	51,  // 87: ida.worker.v1.AnalysisTools.ImportIl2Cpp:output_type -> ida.worker.v1.ImportIl2CppResponse
-	76,  // 88: ida.worker.v1.AnalysisTools.GetGlobals:output_type -> ida.worker.v1.GetGlobalsResponse
-	78,  // 89: ida.worker.v1.AnalysisTools.SetGlobalType:output_type -> ida.worker.v1.SetGlobalTypeResponse
-	80,  // 90: ida.worker.v1.AnalysisTools.RenameGlobal:output_type -> ida.worker.v1.RenameGlobalResponse
-	82,  // 91: ida.worker.v1.AnalysisTools.DataReadString:output_type -> ida.worker.v1.DataReadStringResponse
-	84,  // 92: ida.worker.v1.AnalysisTools.DataReadByte:output_type -> ida.worker.v1.DataReadByteResponse
-	103, // 93: ida.worker.v1.AnalysisTools.FindBinary:output_type -> ida.worker.v1.FindBinaryResponse
-	105, // 94: ida.worker.v1.AnalysisTools.FindText:output_type -> ida.worker.v1.FindTextResponse
-	87,  // 95: ida.worker.v1.AnalysisTools.ListStructs:output_type -> ida.worker.v1.ListStructsResponse
-	90,  // 96: ida.worker.v1.AnalysisTools.GetStruct:output_type -> ida.worker.v1.GetStructResponse
-	93,  // 97: ida.worker.v1.AnalysisTools.ListEnums:output_type -> ida.worker.v1.ListEnumsResponse
-	96,  // 98: ida.worker.v1.AnalysisTools.GetEnum:output_type -> ida.worker.v1.GetEnumResponse
-	99,  // 99: ida.worker.v1.AnalysisTools.GetFunctionInfo:output_type -> ida.worker.v1.GetFunctionInfoResponse
-	101, // 100: ida.worker.v1.AnalysisTools.GetTypeAt:output_type -> ida.worker.v1.GetTypeAtResponse
-	53,  // 101: ida.worker.v1.AnalysisTools.GetDwordAt:output_type -> ida.worker.v1.GetDwordAtResponse
-	55,  // 102: ida.worker.v1.AnalysisTools.GetQwordAt:output_type -> ida.worker.v1.GetQwordAtResponse
-	57,  // 103: ida.worker.v1.AnalysisTools.GetInstructionLength:output_type -> ida.worker.v1.GetInstructionLengthResponse
-	63,  // 104: ida.worker.v1.AnalysisTools.SetComment:output_type -> ida.worker.v1.SetCommentResponse
-	65,  // 105: ida.worker.v1.AnalysisTools.GetComment:output_type -> ida.worker.v1.GetCommentResponse
-	67,  // 106: ida.worker.v1.AnalysisTools.SetFuncComment:output_type -> ida.worker.v1.SetFuncCommentResponse
-	107, // 107: ida.worker.v1.AnalysisTools.GetFuncComment:output_type -> ida.worker.v1.GetFuncCommentResponse
-	69,  // 108: ida.worker.v1.AnalysisTools.SetLvarType:output_type -> ida.worker.v1.SetLvarTypeResponse
-	71,  // 109: ida.worker.v1.AnalysisTools.RenameLvar:output_type -> ida.worker.v1.RenameLvarResponse
-	73,  // 110: ida.worker.v1.AnalysisTools.SetDecompilerComment:output_type -> ida.worker.v1.SetDecompilerCommentResponse
-	109, // 111: ida.worker.v1.AnalysisTools.SetName:output_type -> ida.worker.v1.SetNameResponse
-	111, // 112: ida.worker.v1.AnalysisTools.GetName:output_type -> ida.worker.v1.GetNameResponse
-	113, // 113: ida.worker.v1.AnalysisTools.DeleteName:output_type -> ida.worker.v1.DeleteNameResponse
-	115, // 114: ida.worker.v1.AnalysisTools.SetFunctionType:output_type -> ida.worker.v1.SetFunctionTypeResponse
-	59,  // 115: ida.worker.v1.Healthcheck.Ping:output_type -> ida.worker.v1.PingResponse
-	61,  // 116: ida.worker.v1.Healthcheck.StatusStream:output_type -> ida.worker.v1.WorkerStatus
-	66,  // [66:117] is the sub-list for method output_type
-	15,  // [15:66] is the sub-list for method input_type
+	52,  // 37: ida.worker.v1.AnalysisTools.ImportFlutter:input_type -> ida.worker.v1.ImportFlutterRequest
+	76,  // 38: ida.worker.v1.AnalysisTools.GetGlobals:input_type -> ida.worker.v1.GetGlobalsRequest
+	79,  // 39: ida.worker.v1.AnalysisTools.SetGlobalType:input_type -> ida.worker.v1.SetGlobalTypeRequest
+	81,  // 40: ida.worker.v1.AnalysisTools.RenameGlobal:input_type -> ida.worker.v1.RenameGlobalRequest
+	83,  // 41: ida.worker.v1.AnalysisTools.DataReadString:input_type -> ida.worker.v1.DataReadStringRequest
+	85,  // 42: ida.worker.v1.AnalysisTools.DataReadByte:input_type -> ida.worker.v1.DataReadByteRequest
+	104, // 43: ida.worker.v1.AnalysisTools.FindBinary:input_type -> ida.worker.v1.FindBinaryRequest
+	106, // 44: ida.worker.v1.AnalysisTools.FindText:input_type -> ida.worker.v1.FindTextRequest
+	87,  // 45: ida.worker.v1.AnalysisTools.ListStructs:input_type -> ida.worker.v1.ListStructsRequest
+	90,  // 46: ida.worker.v1.AnalysisTools.GetStruct:input_type -> ida.worker.v1.GetStructRequest
+	93,  // 47: ida.worker.v1.AnalysisTools.ListEnums:input_type -> ida.worker.v1.ListEnumsRequest
+	96,  // 48: ida.worker.v1.AnalysisTools.GetEnum:input_type -> ida.worker.v1.GetEnumRequest
+	99,  // 49: ida.worker.v1.AnalysisTools.GetFunctionInfo:input_type -> ida.worker.v1.GetFunctionInfoRequest
+	102, // 50: ida.worker.v1.AnalysisTools.GetTypeAt:input_type -> ida.worker.v1.GetTypeAtRequest
+	54,  // 51: ida.worker.v1.AnalysisTools.GetDwordAt:input_type -> ida.worker.v1.GetDwordAtRequest
+	56,  // 52: ida.worker.v1.AnalysisTools.GetQwordAt:input_type -> ida.worker.v1.GetQwordAtRequest
+	58,  // 53: ida.worker.v1.AnalysisTools.GetInstructionLength:input_type -> ida.worker.v1.GetInstructionLengthRequest
+	64,  // 54: ida.worker.v1.AnalysisTools.SetComment:input_type -> ida.worker.v1.SetCommentRequest
+	66,  // 55: ida.worker.v1.AnalysisTools.GetComment:input_type -> ida.worker.v1.GetCommentRequest
+	68,  // 56: ida.worker.v1.AnalysisTools.SetFuncComment:input_type -> ida.worker.v1.SetFuncCommentRequest
+	108, // 57: ida.worker.v1.AnalysisTools.GetFuncComment:input_type -> ida.worker.v1.GetFuncCommentRequest
+	70,  // 58: ida.worker.v1.AnalysisTools.SetLvarType:input_type -> ida.worker.v1.SetLvarTypeRequest
+	72,  // 59: ida.worker.v1.AnalysisTools.RenameLvar:input_type -> ida.worker.v1.RenameLvarRequest
+	74,  // 60: ida.worker.v1.AnalysisTools.SetDecompilerComment:input_type -> ida.worker.v1.SetDecompilerCommentRequest
+	110, // 61: ida.worker.v1.AnalysisTools.SetName:input_type -> ida.worker.v1.SetNameRequest
+	112, // 62: ida.worker.v1.AnalysisTools.GetName:input_type -> ida.worker.v1.GetNameRequest
+	114, // 63: ida.worker.v1.AnalysisTools.DeleteName:input_type -> ida.worker.v1.DeleteNameRequest
+	116, // 64: ida.worker.v1.AnalysisTools.SetFunctionType:input_type -> ida.worker.v1.SetFunctionTypeRequest
+	60,  // 65: ida.worker.v1.Healthcheck.Ping:input_type -> ida.worker.v1.PingRequest
+	62,  // 66: ida.worker.v1.Healthcheck.StatusStream:input_type -> ida.worker.v1.StatusStreamRequest
+	1,   // 67: ida.worker.v1.SessionControl.OpenBinary:output_type -> ida.worker.v1.OpenBinaryResponse
+	3,   // 68: ida.worker.v1.SessionControl.CloseSession:output_type -> ida.worker.v1.CloseSessionResponse
+	5,   // 69: ida.worker.v1.SessionControl.SaveDatabase:output_type -> ida.worker.v1.SaveDatabaseResponse
+	7,   // 70: ida.worker.v1.SessionControl.PlanAndWait:output_type -> ida.worker.v1.PlanAndWaitResponse
+	9,   // 71: ida.worker.v1.SessionControl.GetSessionInfo:output_type -> ida.worker.v1.GetSessionInfoResponse
+	11,  // 72: ida.worker.v1.AnalysisTools.GetBytes:output_type -> ida.worker.v1.GetBytesResponse
+	13,  // 73: ida.worker.v1.AnalysisTools.GetDisasm:output_type -> ida.worker.v1.GetDisasmResponse
+	15,  // 74: ida.worker.v1.AnalysisTools.GetFunctionDisasm:output_type -> ida.worker.v1.GetFunctionDisasmResponse
+	17,  // 75: ida.worker.v1.AnalysisTools.GetDecompiled:output_type -> ida.worker.v1.GetDecompiledResponse
+	19,  // 76: ida.worker.v1.AnalysisTools.GetFunctionName:output_type -> ida.worker.v1.GetFunctionNameResponse
+	22,  // 77: ida.worker.v1.AnalysisTools.GetSegments:output_type -> ida.worker.v1.GetSegmentsResponse
+	25,  // 78: ida.worker.v1.AnalysisTools.GetFunctions:output_type -> ida.worker.v1.GetFunctionsResponse
+	28,  // 79: ida.worker.v1.AnalysisTools.GetXRefsTo:output_type -> ida.worker.v1.GetXRefsToResponse
+	30,  // 80: ida.worker.v1.AnalysisTools.GetXRefsFrom:output_type -> ida.worker.v1.GetXRefsFromResponse
+	33,  // 81: ida.worker.v1.AnalysisTools.GetDataRefs:output_type -> ida.worker.v1.GetDataRefsResponse
+	36,  // 82: ida.worker.v1.AnalysisTools.GetStringXRefs:output_type -> ida.worker.v1.GetStringXRefsResponse
+	39,  // 83: ida.worker.v1.AnalysisTools.GetImports:output_type -> ida.worker.v1.GetImportsResponse
+	42,  // 84: ida.worker.v1.AnalysisTools.GetExports:output_type -> ida.worker.v1.GetExportsResponse
+	44,  // 85: ida.worker.v1.AnalysisTools.GetEntryPoint:output_type -> ida.worker.v1.GetEntryPointResponse
+	47,  // 86: ida.worker.v1.AnalysisTools.GetStrings:output_type -> ida.worker.v1.GetStringsResponse
+	49,  // 87: ida.worker.v1.AnalysisTools.MakeFunction:output_type -> ida.worker.v1.MakeFunctionResponse
+	51,  // 88: ida.worker.v1.AnalysisTools.ImportIl2Cpp:output_type -> ida.worker.v1.ImportIl2CppResponse
+	53,  // 89: ida.worker.v1.AnalysisTools.ImportFlutter:output_type -> ida.worker.v1.ImportFlutterResponse
+	78,  // 90: ida.worker.v1.AnalysisTools.GetGlobals:output_type -> ida.worker.v1.GetGlobalsResponse
+	80,  // 91: ida.worker.v1.AnalysisTools.SetGlobalType:output_type -> ida.worker.v1.SetGlobalTypeResponse
+	82,  // 92: ida.worker.v1.AnalysisTools.RenameGlobal:output_type -> ida.worker.v1.RenameGlobalResponse
+	84,  // 93: ida.worker.v1.AnalysisTools.DataReadString:output_type -> ida.worker.v1.DataReadStringResponse
+	86,  // 94: ida.worker.v1.AnalysisTools.DataReadByte:output_type -> ida.worker.v1.DataReadByteResponse
+	105, // 95: ida.worker.v1.AnalysisTools.FindBinary:output_type -> ida.worker.v1.FindBinaryResponse
+	107, // 96: ida.worker.v1.AnalysisTools.FindText:output_type -> ida.worker.v1.FindTextResponse
+	89,  // 97: ida.worker.v1.AnalysisTools.ListStructs:output_type -> ida.worker.v1.ListStructsResponse
+	92,  // 98: ida.worker.v1.AnalysisTools.GetStruct:output_type -> ida.worker.v1.GetStructResponse
+	95,  // 99: ida.worker.v1.AnalysisTools.ListEnums:output_type -> ida.worker.v1.ListEnumsResponse
+	98,  // 100: ida.worker.v1.AnalysisTools.GetEnum:output_type -> ida.worker.v1.GetEnumResponse
+	101, // 101: ida.worker.v1.AnalysisTools.GetFunctionInfo:output_type -> ida.worker.v1.GetFunctionInfoResponse
+	103, // 102: ida.worker.v1.AnalysisTools.GetTypeAt:output_type -> ida.worker.v1.GetTypeAtResponse
+	55,  // 103: ida.worker.v1.AnalysisTools.GetDwordAt:output_type -> ida.worker.v1.GetDwordAtResponse
+	57,  // 104: ida.worker.v1.AnalysisTools.GetQwordAt:output_type -> ida.worker.v1.GetQwordAtResponse
+	59,  // 105: ida.worker.v1.AnalysisTools.GetInstructionLength:output_type -> ida.worker.v1.GetInstructionLengthResponse
+	65,  // 106: ida.worker.v1.AnalysisTools.SetComment:output_type -> ida.worker.v1.SetCommentResponse
+	67,  // 107: ida.worker.v1.AnalysisTools.GetComment:output_type -> ida.worker.v1.GetCommentResponse
+	69,  // 108: ida.worker.v1.AnalysisTools.SetFuncComment:output_type -> ida.worker.v1.SetFuncCommentResponse
+	109, // 109: ida.worker.v1.AnalysisTools.GetFuncComment:output_type -> ida.worker.v1.GetFuncCommentResponse
+	71,  // 110: ida.worker.v1.AnalysisTools.SetLvarType:output_type -> ida.worker.v1.SetLvarTypeResponse
+	73,  // 111: ida.worker.v1.AnalysisTools.RenameLvar:output_type -> ida.worker.v1.RenameLvarResponse
+	75,  // 112: ida.worker.v1.AnalysisTools.SetDecompilerComment:output_type -> ida.worker.v1.SetDecompilerCommentResponse
+	111, // 113: ida.worker.v1.AnalysisTools.SetName:output_type -> ida.worker.v1.SetNameResponse
+	113, // 114: ida.worker.v1.AnalysisTools.GetName:output_type -> ida.worker.v1.GetNameResponse
+	115, // 115: ida.worker.v1.AnalysisTools.DeleteName:output_type -> ida.worker.v1.DeleteNameResponse
+	117, // 116: ida.worker.v1.AnalysisTools.SetFunctionType:output_type -> ida.worker.v1.SetFunctionTypeResponse
+	61,  // 117: ida.worker.v1.Healthcheck.Ping:output_type -> ida.worker.v1.PingResponse
+	63,  // 118: ida.worker.v1.Healthcheck.StatusStream:output_type -> ida.worker.v1.WorkerStatus
+	67,  // [67:119] is the sub-list for method output_type
+	15,  // [15:67] is the sub-list for method input_type
 	15,  // [15:15] is the sub-list for extension type_name
 	15,  // [15:15] is the sub-list for extension extendee
 	0,   // [0:15] is the sub-list for field type_name
@@ -7116,7 +7251,7 @@ func file_ida_worker_v1_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ida_worker_v1_service_proto_rawDesc), len(file_ida_worker_v1_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   116,
+			NumMessages:   118,
 			NumExtensions: 0,
 			NumServices:   3,
 		},

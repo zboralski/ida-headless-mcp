@@ -369,6 +369,11 @@ func (s *Server) RegisterTools(mcpServer *mcp.Server) {
 	}, s.importIl2cpp)
 
 	mcp.AddTool(mcpServer, &mcp.Tool{
+		Name:        "import_flutter",
+		Description: "Import Blutter/Dart metadata into the current session",
+	}, s.importFlutter)
+
+	mcp.AddTool(mcpServer, &mcp.Tool{
 		Name:        "get_segments",
 		Description: "Get all memory segments with permissions and metadata",
 	}, s.getSegments)

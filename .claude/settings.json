@@ -34,6 +34,7 @@
       "mcp__ida-headless__get_type_at",
       "mcp__ida-headless__get_xrefs_from",
       "mcp__ida-headless__get_xrefs_to",
+      "mcp__ida-headless__import_flutter",
       "mcp__ida-headless__import_il2cpp",
       "mcp__ida-headless__list_enums",
       "mcp__ida-headless__list_sessions",

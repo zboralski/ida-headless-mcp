@@ -42,3 +42,6 @@ Thumbs.db
 # IDA temporary files
 .$$$
 *.$$$
+
+# Third-party tools (user installs locally)
+contrib/blutter/

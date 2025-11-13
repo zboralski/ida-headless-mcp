@@ -408,6 +408,75 @@ class IDAWrapper:
             stats["header_error"] = header_error
         return stats
 
+    def import_flutter(self, blutter_output_path: str) -> dict:
+        """Import Blutter/Dart metadata into the current database."""
+        if not self.db_open:
+            raise RuntimeError("IDA database is not open. Call OpenBinary first.")
+        self.touch()
+        start = time.time()
+
+        if not blutter_output_path:
+            raise ValueError("blutter_output_path is required")
+
+        import os
+        import re
+
+        # Construct path to addNames.py script
+        addnames_path = os.path.join(blutter_output_path, "ida_script", "addNames.py")
+        if not os.path.exists(addnames_path):
+            raise ValueError(f"addNames.py not found at {addnames_path}")
+
+        # Read the script
+        try:
+            with open(addnames_path, "r", encoding="utf-8") as f:
+                script_content = f.read()
+        except Exception as exc:
+            raise ValueError(f"Failed to read addNames.py: {exc}") from exc
+
+        stats = {
+            "functions_created": 0,
+            "functions_named": 0,
+        }
+
+        # Parse ida_funcs.add_func() calls
+        # Pattern: ida_funcs.add_func(0x133830, 0x133830)
+        add_func_pattern = re.compile(r"ida_funcs\.add_func\(0x([0-9a-fA-F]+),\s*0x([0-9a-fA-F]+)\)")
+        for match in add_func_pattern.finditer(script_content):
+            start_addr = int(match.group(1), 16)
+            end_addr = int(match.group(2), 16)
+            try:
+                # Check if function already exists
+                existing = self.ida_funcs.get_func(start_addr)
+                if existing:
+                    self.ida_funcs.del_func(start_addr)
+                # Create function
+                if self.ida_funcs.add_func(start_addr, end_addr):
+                    stats["functions_created"] += 1
+            except Exception as exc:
+                logging.debug("Failed to create function at %x: %s", start_addr, exc)
+
+        # Parse idaapi.set_name() calls
+        # Pattern: idaapi.set_name(0x133830, "dart_core_::get__uriBaseClosure_133830")
+        set_name_pattern = re.compile(r"idaapi\.set_name\(0x([0-9a-fA-F]+),\s*\"([^\"]+)\"\)")
+        for match in set_name_pattern.finditer(script_content):
+            addr = int(match.group(1), 16)
+            name = match.group(2)
+            try:
+                # Use set_name with flags to handle duplicates
+                flags = getattr(self.idc, "SN_NOWARN", 0) | getattr(self.idc, "SN_NOCHECK", 0)
+                if self.idc.set_name(addr, name, flags):
+                    stats["functions_named"] += 1
+                else:
+                    # Try fallback name
+                    fallback = f"{name}_{addr:x}"
+                    self.idc.set_name(addr, fallback, flags)
+                    stats["functions_named"] += 1
+            except Exception as exc:
+                logging.debug("Failed to set name %s at %x: %s", name, addr, exc)
+
+        stats["duration_seconds"] = time.time() - start
+        return stats
+
     # Analysis operations
 
     def get_bytes(self, address: int, size: int) -> bytes:

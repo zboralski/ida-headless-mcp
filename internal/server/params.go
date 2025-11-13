@@ -269,7 +269,12 @@ type ImportIl2cppRequest struct {
 	Fields     []string `json:"fields,omitempty" mcp:"optional list of sections to import (default: all)"`
 }
 
-type XRefRequest struct {
+type ImportFlutterRequest struct {
+	SessionID         string `json:"session_id" mcp:"session identifier"`
+	BlutterOutputPath string `json:"blutter_output_path" mcp:"path to Blutter output directory (contains ida_script/addNames.py)"`
+}
+
+type XRefRequest struct{
 	SessionID string `json:"session_id" mcp:"session identifier"`
 	Address   uint64 `json:"address" mcp:"address"`
 }

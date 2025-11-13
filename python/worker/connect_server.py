@@ -11,7 +11,7 @@ from pathlib import Path
 # Add gen path for protobuf imports
 sys.path.insert(0, str(Path(__file__).parent / "gen"))
 
-import ida_service_pb2 as pb
+from ida.worker.v1 import service_pb2 as pb
 
 
 class ConnectServer:
@@ -272,6 +272,20 @@ class ConnectServer:
                 resp.signatures_applied = result.get("signatures_applied", 0)
                 if result.get("header_error"):
                     resp.error = result["header_error"]
+                return resp
+
+            elif method == "ImportFlutter":
+                req = pb.ImportFlutterRequest()
+                req.ParseFromString(proto_body)
+                blutter_output_path = req.blutter_output_path
+                if not blutter_output_path:
+                    raise ValueError("blutter_output_path is required")
+                result = self.ida.import_flutter(blutter_output_path)
+                resp = pb.ImportFlutterResponse()
+                resp.success = True
+                resp.duration_seconds = result.get("duration_seconds", 0.0)
+                resp.functions_created = result.get("functions_created", 0)
+                resp.functions_named = result.get("functions_named", 0)
                 return resp
 
             elif method == "GetImports":

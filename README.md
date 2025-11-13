@@ -26,7 +26,7 @@ Headless IDA Pro binary analysis via Model Context Protocol. Go orchestrates mul
 **Key features:**
 - Multi-session concurrency via process isolation
 - 51 MCP tools for binary analysis
-- Il2CppDumper metadata import support
+- [Il2CppDumper](https://github.com/Perfare/Il2CppDumper) and [Blutter](https://github.com/worawit/blutter) metadata import support
 
 ## Prerequisites
 
@@ -49,6 +49,10 @@ Headless IDA Pro binary analysis via Model Context Protocol. Go orchestrates mul
    ```bash
    pip3 install connect-python
    ```
+
+5. **Optional: [Il2CppDumper](https://github.com/Perfare/Il2CppDumper)** for Unity game analysis
+
+6. **Optional: [Blutter](https://github.com/worawit/blutter)** for Flutter/Dart app analysis
 
 ## Installation
 
@@ -236,11 +240,16 @@ Session may have timed out. Use `list_sessions` to check active sessions.
 
 MIT
 
-## Similar Projects
-- [LaurieWired/GhidraMCP](https://github.com/LaurieWired/GhidraMCP) 
-- [mrexodia/ida-pro-mcp](https://github.com/mrexodia/ida-pro-mcp) ver with SSE transport
-- [cnitlrt/headless-ida-mcp-server](https://github.com/cnitlrt/headless-ida-mcp-server)
+## Related Projects
 
+**MCP Servers:**
+- [LaurieWired/GhidraMCP](https://github.com/LaurieWired/GhidraMCP) - Ghidra MCP server
+- [mrexodia/ida-pro-mcp](https://github.com/mrexodia/ida-pro-mcp) - IDA Pro MCP with SSE transport
+- [cnitlrt/headless-ida-mcp-server](https://github.com/cnitlrt/headless-ida-mcp-server) - Alternative headless IDA MCP
+
+**Metadata Dumpers:**
+- [Perfare/Il2CppDumper](https://github.com/Perfare/Il2CppDumper) - Unity Il2Cpp metadata extraction (used by import_il2cpp)
+- [worawit/blutter](https://github.com/worawit/blutter) - Flutter/Dart reverse engineering (used by import_flutter)
 
 ## References
 
