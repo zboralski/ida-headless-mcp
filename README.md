@@ -25,7 +25,7 @@ Headless IDA Pro binary analysis via Model Context Protocol. Go orchestrates mul
 
 **Key features:**
 - Multi-session concurrency via process isolation
-- 51 MCP tools for binary analysis
+- 52 MCP tools for binary analysis
 - [Il2CppDumper](https://github.com/Perfare/Il2CppDumper) and [Blutter](https://github.com/worawit/blutter) metadata import support
 
 ## Prerequisites
