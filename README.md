@@ -73,10 +73,28 @@ make build
 ./bin/ida-mcp-server
 ```
 
-Server exposes both transports on port 17300 (configurable via `config.json`, env, or `--port`):
+Server exposes multiple transports on port 17300 (configurable via `config.json`, env, or `--port`):
 
-- Streamable HTTP (recommended): `http://localhost:17300/`
-- SSE compatibility endpoint: `http://localhost:17300/sse`
+- **Streamable HTTP** (recommended): `http://localhost:17300/`
+- **WebSocket** (real-time bidirectional): `ws://localhost:17300/ws`
+- **SSE** (compatibility endpoint): `http://localhost:17300/sse`
+
+### Transport Selection Guide
+
+**Use WebSocket (`/ws`) when:**
+- You need real-time bidirectional communication
+- Streaming large result sets efficiently
+- Building interactive tools with live progress updates
+- Long-running analysis operations with incremental results
+
+**Use Streamable HTTP (`/`) when:**
+- Standard request/response patterns
+- Maximum compatibility with MCP clients
+- Simple tool invocations
+
+**Use SSE (`/sse`) when:**
+- Legacy client compatibility required
+- Firewall restrictions prevent WebSocket connections
 
 ### Configure Claude Desktop
 
@@ -185,13 +203,36 @@ make inspector      # Launch inspector at http://localhost:5173
 ida-headless-mcp/
 ├── cmd/ida-mcp-server/   # Go MCP server entry point
 ├── internal/
-│   ├── server/           # MCP tool handlers
+│   ├── server/           # MCP tool handlers + WebSocket support
 │   ├── session/          # Session registry
 │   └── worker/           # Worker process manager
 ├── proto/                # Protobuf definitions
 ├── python/worker/        # Python worker (idalib wrapper)
 ├── contrib/il2cpp/       # Il2CppDumper helpers (MIT)
+├── examples/             # Client examples (WebSocket, etc.)
 └── tests/                # Test suites
+```
+
+### WebSocket Client Examples
+
+See [examples/websocket-client/](examples/websocket-client/) for complete working examples in Go and Python demonstrating:
+
+- WebSocket connection establishment
+- Request/response correlation with message IDs
+- Error handling and graceful shutdown
+- Real-time bidirectional communication patterns
+
+**Quick Start:**
+
+```powershell
+# Python example
+cd examples\websocket-client
+pip install -r requirements.txt
+python client.py
+
+# Go example
+cd examples\websocket-client
+go run main.go
 ```
 
 ### Adding New Tools

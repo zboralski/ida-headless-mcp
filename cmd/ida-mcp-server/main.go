@@ -95,6 +95,7 @@ func main() {
 	logger.Printf("Listening on %s", addr)
 	logger.Printf("HTTP transport at http://localhost:%d/", cfg.Port)
 	logger.Printf("SSE transport at http://localhost:%d/sse", cfg.Port)
+	logger.Printf("WebSocket transport at ws://localhost:%d/ws", cfg.Port)
 
 	sigChan := make(chan os.Signal, 1)
 	signal.Notify(sigChan, os.Interrupt, syscall.SIGTERM)
@@ -103,18 +104,20 @@ func main() {
 		<-sigChan
 		logger.Println("Shutting down gracefully...")
 
-		// Give HTTP server 10 seconds to finish in-flight requests
-		shutdownCtx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-		defer cancel()
+		shutdownContextForHttpServer, cancellationFunctionForShutdownContext := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancellationFunctionForShutdownContext()
 
-		if err := httpServer.Shutdown(shutdownCtx); err != nil {
-			logger.Printf("HTTP server shutdown error: %v", err)
+		errorFromHttpServerShutdown := httpServer.Shutdown(shutdownContextForHttpServer)
+		if errorFromHttpServerShutdown != nil {
+			logger.Printf("HTTP server shutdown error: %v", errorFromHttpServerShutdown)
 		}
 
-		// Stop all workers and log any errors
-		for _, sess := range registry.List() {
-			if err := workers.Stop(sess.ID); err != nil {
-				logger.Printf("Failed to stop worker %s: %v", sess.ID, err)
+		listOfAllActiveSessions := registry.List()
+		for _, sessionStructure := range listOfAllActiveSessions {
+			sessionIdentifier := sessionStructure.ID
+			errorFromStoppingWorker := workers.Stop(sessionIdentifier)
+			if errorFromStoppingWorker != nil {
+				logger.Printf("Failed to stop worker %s: %v", sessionIdentifier, errorFromStoppingWorker)
 			}
 		}
 
