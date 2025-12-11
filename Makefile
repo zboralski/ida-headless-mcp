@@ -8,8 +8,8 @@ proto-check:
 	PATH="$(shell go env GOPATH)/bin:$${PATH}" go generate ./proto/ida/worker/v1
 	git diff --exit-code proto ida python/worker/gen
 
-# Build server binary
-build: proto
+# Build server binary (proto files are committed, no need to regenerate)
+build:
 	go build -o bin/ida-mcp-server ./cmd/ida-mcp-server
 
 # Run fast unit tests only (excludes integration tests)

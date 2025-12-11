@@ -45,9 +45,9 @@ Headless IDA Pro binary analysis via Model Context Protocol. Go orchestrates mul
    make install-tools
    ```
 
-4. **Python 3.10+** with Connect:
+4. **Python 3.10+** with dependencies:
    ```bash
-   pip3 install connect-python
+   pip3 install -r python/requirements.txt
    ```
 
 5. **Optional: [Il2CppDumper](https://github.com/Perfare/Il2CppDumper)** for Unity game analysis
