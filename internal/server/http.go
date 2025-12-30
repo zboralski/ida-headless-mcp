@@ -6,34 +6,68 @@ import (
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
 
-func (s *Server) HTTPMux(mcpServer *mcp.Server) http.Handler {
-	sseHandler := mcp.NewSSEHandler(func(r *http.Request) *mcp.Server {
-		if s.debug {
-			s.logger.Printf("[DEBUG] SSE connection from %s: %s %s", r.RemoteAddr, r.Method, r.URL.Path)
+func (serverInstance *Server) HTTPMux(modelContextProtocolServerForHandlingRequests *mcp.Server) http.Handler {
+	serverSentEventsHandlerForLegacyClients := mcp.NewSSEHandler(func(httpRequestFromClient *http.Request) *mcp.Server {
+		shouldLogDebugInformationForThisRequest := serverInstance.debug
+		if shouldLogDebugInformationForThisRequest {
+			remoteClientAddressAsString := httpRequestFromClient.RemoteAddr
+			httpMethodFromRequest := httpRequestFromClient.Method
+			urlPathFromRequest := httpRequestFromClient.URL.Path
+			serverInstance.logger.Printf("[DEBUG] SSE connection from %s: %s %s", remoteClientAddressAsString, httpMethodFromRequest, urlPathFromRequest)
 		}
-		return mcpServer
+		return modelContextProtocolServerForHandlingRequests
 	}, nil)
 
-	streamHandler := mcp.NewStreamableHTTPHandler(func(r *http.Request) *mcp.Server {
-		return mcpServer
+	streamableHttpHandlerForModernClients := mcp.NewStreamableHTTPHandler(func(httpRequestFromClient *http.Request) *mcp.Server {
+		return modelContextProtocolServerForHandlingRequests
 	}, &mcp.StreamableHTTPOptions{
 		JSONResponse:   true,
-		SessionTimeout: s.sessionTimeout,
+		SessionTimeout: serverInstance.sessionTimeout,
 		Stateless:      true,
 	})
 
-	mux := http.NewServeMux()
-	mux.Handle("/sse", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if s.debug {
-			s.logger.Printf("[SSE] %s %s from %s", r.Method, r.URL.Path, r.RemoteAddr)
+	webSocketConnectionManagerForRealtimeBidirectionalCommunication := CreateNewWebSocketConnectionManagerWithConfiguration(
+		modelContextProtocolServerForHandlingRequests,
+		serverInstance.logger,
+		serverInstance.debug,
+	)
+
+	serverInstance.webSocketManagerForActiveConnections = webSocketConnectionManagerForRealtimeBidirectionalCommunication
+
+	httpRequestMultiplexerForRoutingIncomingRequests := http.NewServeMux()
+	
+	httpRequestMultiplexerForRoutingIncomingRequests.Handle("/sse", http.HandlerFunc(func(httpResponseWriter http.ResponseWriter, httpRequestFromClient *http.Request) {
+		shouldLogDebugInformationForThisRequest := serverInstance.debug
+		if shouldLogDebugInformationForThisRequest {
+			httpMethodFromRequest := httpRequestFromClient.Method
+			urlPathFromRequest := httpRequestFromClient.URL.Path
+			remoteClientAddressAsString := httpRequestFromClient.RemoteAddr
+			serverInstance.logger.Printf("[SSE] %s %s from %s", httpMethodFromRequest, urlPathFromRequest, remoteClientAddressAsString)
 		}
-		sseHandler.ServeHTTP(w, r)
+		serverSentEventsHandlerForLegacyClients.ServeHTTP(httpResponseWriter, httpRequestFromClient)
 	}))
-	mux.Handle("/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if s.debug {
-			s.logger.Printf("[HTTP] %s %s from %s", r.Method, r.URL.Path, r.RemoteAddr)
+	
+	httpRequestMultiplexerForRoutingIncomingRequests.Handle("/ws", http.HandlerFunc(func(httpResponseWriter http.ResponseWriter, httpRequestFromClient *http.Request) {
+		shouldLogDebugInformationForThisRequest := serverInstance.debug
+		if shouldLogDebugInformationForThisRequest {
+			httpMethodFromRequest := httpRequestFromClient.Method
+			urlPathFromRequest := httpRequestFromClient.URL.Path
+			remoteClientAddressAsString := httpRequestFromClient.RemoteAddr
+			serverInstance.logger.Printf("[WEBSOCKET] %s %s from %s", httpMethodFromRequest, urlPathFromRequest, remoteClientAddressAsString)
 		}
-		streamHandler.ServeHTTP(w, r)
+		webSocketConnectionManagerForRealtimeBidirectionalCommunication.HandleIncomingHttpConnectionUpgradeToWebSocket(httpResponseWriter, httpRequestFromClient)
 	}))
-	return mux
+	
+	httpRequestMultiplexerForRoutingIncomingRequests.Handle("/", http.HandlerFunc(func(httpResponseWriter http.ResponseWriter, httpRequestFromClient *http.Request) {
+		shouldLogDebugInformationForThisRequest := serverInstance.debug
+		if shouldLogDebugInformationForThisRequest {
+			httpMethodFromRequest := httpRequestFromClient.Method
+			urlPathFromRequest := httpRequestFromClient.URL.Path
+			remoteClientAddressAsString := httpRequestFromClient.RemoteAddr
+			serverInstance.logger.Printf("[HTTP] %s %s from %s", httpMethodFromRequest, urlPathFromRequest, remoteClientAddressAsString)
+		}
+		streamableHttpHandlerForModernClients.ServeHTTP(httpResponseWriter, httpRequestFromClient)
+	}))
+	
+	return httpRequestMultiplexerForRoutingIncomingRequests
 }
