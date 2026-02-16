@@ -26,6 +26,8 @@ Headless IDA Pro binary analysis via Model Context Protocol. Go orchestrates mul
 **Key features:**
 - Multi-session concurrency via process isolation
 - 52 MCP tools for binary analysis
+- Automatic session timeouts (4 hours default, configurable)
+- Paginated results with configurable limit (default 1000)
 - [Il2CppDumper](https://github.com/Perfare/Il2CppDumper) metadata import for Unity games
 - [unflutter](https://github.com/zboralski/unflutter) metadata import for Flutter/Dart apps
 
@@ -86,7 +88,7 @@ make build                  # Build Go server
 ./bin/ida-mcp-server
 ```
 
-Server exposes both transports on port 17300 (configurable via `config.json`, env, or `--port`):
+Server starts running on port 17300 (configurable via `config.json`, env, or `--port`), exposing both transports:
 
 - Streamable HTTP (recommended): `http://localhost:17300/`
 - SSE compatibility endpoint: `http://localhost:17300/sse`
