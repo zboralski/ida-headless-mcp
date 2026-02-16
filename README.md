@@ -26,13 +26,14 @@ Headless IDA Pro binary analysis via Model Context Protocol. Go orchestrates mul
 **Key features:**
 - Multi-session concurrency via process isolation
 - 52 MCP tools for binary analysis
-- [Il2CppDumper](https://github.com/Perfare/Il2CppDumper) and [Blutter](https://github.com/worawit/blutter) metadata import support
+- [Il2CppDumper](https://github.com/Perfare/Il2CppDumper) metadata import for Unity games
+- [unflutter](https://github.com/zboralski/unflutter) metadata import for Flutter/Dart apps
 
 ## Prerequisites
 
 1. **IDA Pro 9.0+ or IDA Essential 9.2+**
 
-2. **idalib** - Install and activate:
+2. **idalib**: install and activate:
 
    ```bash
    ./scripts/setup_idalib.sh
@@ -52,7 +53,12 @@ Headless IDA Pro binary analysis via Model Context Protocol. Go orchestrates mul
 
 5. **Optional: [Il2CppDumper](https://github.com/Perfare/Il2CppDumper)** for Unity game analysis
 
-6. **Optional: [Blutter](https://github.com/worawit/blutter)** for Flutter/Dart app analysis
+6. **Optional: [unflutter](https://github.com/zboralski/unflutter)** for Flutter/Dart app analysis
+   ```bash
+   # Install unflutter (provides flutter_meta.json for import_flutter)
+   git clone https://github.com/zboralski/unflutter.git
+   cd unflutter && make install
+   ```
 
 ## Installation
 
@@ -104,7 +110,7 @@ Restart Claude Desktop after editing.
 
 ### Configure Claude Code
 
-Copy `.claude/settings.json` to `~/.claude/settings.json` to grant access to all 51 IDA MCP tools.
+Copy `.claude/settings.json` to `~/.claude/settings.json` to grant access to all IDA MCP tools.
 
 ### Basic Workflow
 
@@ -128,11 +134,24 @@ Copy `.claude/settings.json` to `~/.claude/settings.json` to grant access to all
    → {"success": true}
 ```
 
+### Flutter/Dart Import
+
+```
+1. Run unflutter on the target: unflutter meta libapp.so
+2. open_binary(path="libapp.so")
+3. import_flutter(session_id="...", meta_json_path="flutter_meta.json")
+   → {"functions_created": 9926, "structs_created": 2090,
+      "signatures_applied": 9926, "comments_set": 34172}
+4. run_auto_analysis(session_id="...")
+```
+
+The `import_flutter` tool reads structured JSON metadata from unflutter. It creates Dart class structs, function definitions with typed signatures, and annotates THR/PP/string reference comments in a single pass.
+
 Use `tools/list` via MCP to see all available tools.
 
 ## Configuration
 
-Command-line flags:
+Command line flags:
 
 ```bash
 ./bin/ida-mcp-server \
@@ -161,6 +180,7 @@ IDA_MCP_DEBUG=1
 make build          # Build Go server
 make proto          # Regenerate protobuf
 make test           # Run tests + consistency checks
+make restart        # Kill, rebuild, restart server
 make clean          # Clean build artifacts
 ```
 
@@ -228,7 +248,7 @@ ida-headless-mcp/
 ```bash
 python3 -c "import idapro; print('OK')"
 ```
-If fails, run `./scripts/setup_idalib.sh`
+If this fails, run `./scripts/setup_idalib.sh`
 
 **Socket timeout:**
 Check Python worker logs. Worker may have crashed during init.
@@ -236,7 +256,7 @@ Check Python worker logs. Worker may have crashed during init.
 **Port already in use:**
 ```bash
 lsof -ti:17300 | xargs kill
-# or use different port
+# or use a different port
 ./bin/ida-mcp-server --port 17301
 ```
 
@@ -250,13 +270,13 @@ MIT
 ## Related Projects
 
 **MCP Servers:**
-- [LaurieWired/GhidraMCP](https://github.com/LaurieWired/GhidraMCP) - Ghidra MCP server
-- [mrexodia/ida-pro-mcp](https://github.com/mrexodia/ida-pro-mcp) - IDA Pro MCP with SSE transport
-- [cnitlrt/headless-ida-mcp-server](https://github.com/cnitlrt/headless-ida-mcp-server) - Alternative headless IDA MCP
+- [LaurieWired/GhidraMCP](https://github.com/LaurieWired/GhidraMCP)
+- [mrexodia/ida-pro-mcp](https://github.com/mrexodia/ida-pro-mcp)
+- [cnitlrt/headless-ida-mcp-server](https://github.com/cnitlrt/headless-ida-mcp-server)
 
 **Metadata Dumpers:**
-- [Perfare/Il2CppDumper](https://github.com/Perfare/Il2CppDumper) - Unity Il2Cpp metadata extraction (used by import_il2cpp)
-- [worawit/blutter](https://github.com/worawit/blutter) - Flutter/Dart reverse engineering (used by import_flutter)
+- [Perfare/Il2CppDumper](https://github.com/Perfare/Il2CppDumper) (used by `import_il2cpp`)
+- [zboralski/unflutter](https://github.com/zboralski/unflutter) (used by `import_flutter`)
 
 ## References
 

@@ -2807,12 +2807,12 @@ func (x *ImportIl2CppResponse) GetSignaturesApplied() uint32 {
 	return 0
 }
 
-// ImportFlutterRequest provides Blutter output directory path
+// ImportFlutterRequest provides unflutter metadata path
 type ImportFlutterRequest struct {
-	state             protoimpl.MessageState `protogen:"open.v1"`
-	BlutterOutputPath string                 `protobuf:"bytes,1,opt,name=blutter_output_path,json=blutterOutputPath,proto3" json:"blutter_output_path,omitempty"` // Path to Blutter output directory (contains ida_script/addNames.py)
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	MetaJsonPath  string                 `protobuf:"bytes,1,opt,name=meta_json_path,json=metaJsonPath,proto3" json:"meta_json_path,omitempty"` // Path to flutter_meta.json from unflutter
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ImportFlutterRequest) Reset() {
@@ -2845,23 +2845,26 @@ func (*ImportFlutterRequest) Descriptor() ([]byte, []int) {
 	return file_ida_worker_v1_service_proto_rawDescGZIP(), []int{52}
 }
 
-func (x *ImportFlutterRequest) GetBlutterOutputPath() string {
+func (x *ImportFlutterRequest) GetMetaJsonPath() string {
 	if x != nil {
-		return x.BlutterOutputPath
+		return x.MetaJsonPath
 	}
 	return ""
 }
 
 // ImportFlutterResponse describes applied Dart metadata stats
 type ImportFlutterResponse struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	Success          bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	Error            string                 `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
-	DurationSeconds  float64                `protobuf:"fixed64,3,opt,name=duration_seconds,json=durationSeconds,proto3" json:"duration_seconds,omitempty"`
-	FunctionsCreated uint32                 `protobuf:"varint,4,opt,name=functions_created,json=functionsCreated,proto3" json:"functions_created,omitempty"`
-	FunctionsNamed   uint32                 `protobuf:"varint,5,opt,name=functions_named,json=functionsNamed,proto3" json:"functions_named,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	Success           bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Error             string                 `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
+	DurationSeconds   float64                `protobuf:"fixed64,3,opt,name=duration_seconds,json=durationSeconds,proto3" json:"duration_seconds,omitempty"`
+	FunctionsCreated  uint32                 `protobuf:"varint,4,opt,name=functions_created,json=functionsCreated,proto3" json:"functions_created,omitempty"`
+	FunctionsNamed    uint32                 `protobuf:"varint,5,opt,name=functions_named,json=functionsNamed,proto3" json:"functions_named,omitempty"`
+	StructsCreated    uint32                 `protobuf:"varint,6,opt,name=structs_created,json=structsCreated,proto3" json:"structs_created,omitempty"`
+	SignaturesApplied uint32                 `protobuf:"varint,7,opt,name=signatures_applied,json=signaturesApplied,proto3" json:"signatures_applied,omitempty"`
+	CommentsSet       uint32                 `protobuf:"varint,8,opt,name=comments_set,json=commentsSet,proto3" json:"comments_set,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *ImportFlutterResponse) Reset() {
@@ -2925,6 +2928,27 @@ func (x *ImportFlutterResponse) GetFunctionsCreated() uint32 {
 func (x *ImportFlutterResponse) GetFunctionsNamed() uint32 {
 	if x != nil {
 		return x.FunctionsNamed
+	}
+	return 0
+}
+
+func (x *ImportFlutterResponse) GetStructsCreated() uint32 {
+	if x != nil {
+		return x.StructsCreated
+	}
+	return 0
+}
+
+func (x *ImportFlutterResponse) GetSignaturesApplied() uint32 {
+	if x != nil {
+		return x.SignaturesApplied
+	}
+	return 0
+}
+
+func (x *ImportFlutterResponse) GetCommentsSet() uint32 {
+	if x != nil {
+		return x.CommentsSet
 	}
 	return 0
 }
@@ -6671,15 +6695,18 @@ const file_ida_worker_v1_service_proto_rawDesc = "" +
 	"\x0emetadata_named\x18\x06 \x01(\rR\rmetadataNamed\x12)\n" +
 	"\x10metadata_methods\x18\a \x01(\rR\x0fmetadataMethods\x12+\n" +
 	"\x11functions_defined\x18\b \x01(\rR\x10functionsDefined\x12-\n" +
-	"\x12signatures_applied\x18\t \x01(\rR\x11signaturesApplied\"F\n" +
-	"\x14ImportFlutterRequest\x12.\n" +
-	"\x13blutter_output_path\x18\x01 \x01(\tR\x11blutterOutputPath\"\xc8\x01\n" +
+	"\x12signatures_applied\x18\t \x01(\rR\x11signaturesApplied\"<\n" +
+	"\x14ImportFlutterRequest\x12$\n" +
+	"\x0emeta_json_path\x18\x01 \x01(\tR\fmetaJsonPath\"\xc3\x02\n" +
 	"\x15ImportFlutterResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x14\n" +
 	"\x05error\x18\x02 \x01(\tR\x05error\x12)\n" +
 	"\x10duration_seconds\x18\x03 \x01(\x01R\x0fdurationSeconds\x12+\n" +
 	"\x11functions_created\x18\x04 \x01(\rR\x10functionsCreated\x12'\n" +
-	"\x0ffunctions_named\x18\x05 \x01(\rR\x0efunctionsNamed\"-\n" +
+	"\x0ffunctions_named\x18\x05 \x01(\rR\x0efunctionsNamed\x12'\n" +
+	"\x0fstructs_created\x18\x06 \x01(\rR\x0estructsCreated\x12-\n" +
+	"\x12signatures_applied\x18\a \x01(\rR\x11signaturesApplied\x12!\n" +
+	"\fcomments_set\x18\b \x01(\rR\vcommentsSet\"-\n" +
 	"\x11GetDwordAtRequest\x12\x18\n" +
 	"\aaddress\x18\x01 \x01(\x04R\aaddress\"@\n" +
 	"\x12GetDwordAtResponse\x12\x14\n" +

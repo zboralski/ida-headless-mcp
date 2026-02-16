@@ -1,4 +1,4 @@
-.PHONY: proto proto-check clean build test run integration-test inspector setup setup-idalib
+.PHONY: proto proto-check clean build test run restart integration-test inspector setup setup-idalib
 
 # Protobuf generation
 proto:
@@ -31,6 +31,13 @@ integration-test:
 
 # Run server
 run: build
+	./bin/ida-mcp-server
+
+# Restart server (kill existing, rebuild, start)
+restart: build
+	@pkill -f 'bin/ida-mcp-server' 2>/dev/null || true
+	@pkill -f 'python3.*ida-headless-mcp/python/worker/server.py' 2>/dev/null || true
+	@sleep 1
 	./bin/ida-mcp-server
 
 # Clean generated files

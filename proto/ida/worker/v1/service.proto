@@ -475,9 +475,9 @@ message ImportIl2CppResponse {
   uint32 signatures_applied = 9;
 }
 
-// ImportFlutterRequest provides Blutter output directory path
+// ImportFlutterRequest provides unflutter metadata path
 message ImportFlutterRequest {
-  string blutter_output_path = 1;  // Path to Blutter output directory (contains ida_script/addNames.py)
+  string meta_json_path = 1;  // Path to flutter_meta.json from unflutter
 }
 
 // ImportFlutterResponse describes applied Dart metadata stats
@@ -487,6 +487,9 @@ message ImportFlutterResponse {
   double duration_seconds = 3;
   uint32 functions_created = 4;
   uint32 functions_named = 5;
+  uint32 structs_created = 6;
+  uint32 signatures_applied = 7;
+  uint32 comments_set = 8;
 }
 
 // GetDwordAtRequest specifies address

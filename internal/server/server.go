@@ -368,7 +368,7 @@ func (s *Server) RegisterTools(mcpServer *mcp.Server) {
 
 	mcp.AddTool(mcpServer, &mcp.Tool{
 		Name:        "import_flutter",
-		Description: "Import Blutter/Dart metadata into the current session",
+		Description: "Import unflutter Dart metadata (flutter_meta.json) into the current session",
 	}, s.importFlutter)
 
 	mcp.AddTool(mcpServer, &mcp.Tool{

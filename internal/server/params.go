@@ -270,8 +270,8 @@ type ImportIl2cppRequest struct {
 }
 
 type ImportFlutterRequest struct {
-	SessionID         string `json:"session_id" mcp:"session identifier"`
-	BlutterOutputPath string `json:"blutter_output_path" mcp:"path to Blutter output directory (contains ida_script/addNames.py)"`
+	SessionID    string `json:"session_id" mcp:"session identifier"`
+	MetaJsonPath string `json:"meta_json_path" mcp:"path to flutter_meta.json produced by unflutter"`
 }
 
 type XRefRequest struct{

@@ -277,15 +277,18 @@ class ConnectServer:
             elif method == "ImportFlutter":
                 req = pb.ImportFlutterRequest()
                 req.ParseFromString(proto_body)
-                blutter_output_path = req.blutter_output_path
-                if not blutter_output_path:
-                    raise ValueError("blutter_output_path is required")
-                result = self.ida.import_flutter(blutter_output_path)
+                meta_json_path = req.meta_json_path
+                if not meta_json_path:
+                    raise ValueError("meta_json_path is required")
+                result = self.ida.import_unflutter(meta_json_path)
                 resp = pb.ImportFlutterResponse()
                 resp.success = True
                 resp.duration_seconds = result.get("duration_seconds", 0.0)
                 resp.functions_created = result.get("functions_created", 0)
                 resp.functions_named = result.get("functions_named", 0)
+                resp.structs_created = result.get("structs_created", 0)
+                resp.signatures_applied = result.get("signatures_applied", 0)
+                resp.comments_set = result.get("comments_set", 0)
                 return resp
 
             elif method == "GetImports":
