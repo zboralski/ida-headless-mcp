@@ -432,8 +432,11 @@ class IDAWrapper:
         import ida_typeinf
         from unflutter_apply import apply_metadata
 
-        return apply_metadata(
+        start = time.time()
+        stats = apply_metadata(
             meta, self.idc, self.ida_funcs, ida_typeinf, self.ida_auto)
+        stats["duration_seconds"] = time.time() - start
+        return stats
 
     # Analysis operations
 

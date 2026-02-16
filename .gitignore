@@ -18,6 +18,9 @@ build/
 # Session state
 databases/sessions/
 
+# Claude Code local settings (user-specific permissions)
+.claude/settings.local.json
+
 # IDE
 .vscode/
 .idea/
