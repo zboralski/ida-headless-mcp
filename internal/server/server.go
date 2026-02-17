@@ -40,28 +40,30 @@ type Config struct {
 }
 
 type Server struct {
-	registry       *session.Registry
-	workers        worker.Controller
-	logger         *log.Logger
-	sessionTimeout time.Duration
-	debug          bool
-	store          *session.Store
-	cacheMu        sync.Mutex
-	cache          map[string]*sessionCache
-	progressMu     sync.Mutex
-	progress       map[string]*sessionProgress
+	registry                              *session.Registry
+	workers                               worker.Controller
+	logger                                *log.Logger
+	sessionTimeout                        time.Duration
+	debug                                 bool
+	store                                 *session.Store
+	cacheMu                               sync.Mutex
+	cache                                 map[string]*sessionCache
+	progressMu                            sync.Mutex
+	progress                              map[string]*sessionProgress
+	webSocketManagerForActiveConnections  *WebSocketConnectionManager
 }
 
 func New(registry *session.Registry, workers worker.Controller, logger *log.Logger, sessionTimeout time.Duration, debug bool, store *session.Store) *Server {
 	return &Server{
-		registry:       registry,
-		workers:        workers,
-		logger:         logger,
-		sessionTimeout: sessionTimeout,
-		debug:          debug,
-		store:          store,
-		cache:          make(map[string]*sessionCache),
-		progress:       make(map[string]*sessionProgress),
+		registry:                              registry,
+		workers:                               workers,
+		logger:                                logger,
+		sessionTimeout:                        sessionTimeout,
+		debug:                                 debug,
+		store:                                 store,
+		cache:                                 make(map[string]*sessionCache),
+		progress:                              make(map[string]*sessionProgress),
+		webSocketManagerForActiveConnections:  nil,
 	}
 }
 
