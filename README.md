@@ -80,6 +80,10 @@ make install-python         # Install Python dependencies
 make build                  # Build Go server
 ```
 
+## Hosted deployment
+
+A hosted deployment is available on [Fronteir AI](https://fronteir.ai/mcp/zboralski-ida-headless-mcp).
+
 ## Usage
 
 ### Start Server
